@@ -1,0 +1,9 @@
+body {
+    height: 100vh;
+    display: flex;
+    background-image: linear-gradient(#a2a2a2, #4e78a0)
+}
+
+ul {
+    list-style-type: none;
+  }
