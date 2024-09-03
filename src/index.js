@@ -64,14 +64,15 @@ function addTask(event) {
 addTaskBtn.addEventListener('click', () => addTask())
 
 
-function editTask(target) {
-    const taskCard = target.closest('.taskCard');
-}
+// function editTask(target) {
+//     const taskCard = target.closest('.taskCard');
+// }
+
 function deleteTask(target) {
     const taskCard = target.closest('.taskCard');
     taskCard.remove();
 }
 
 // global scope due to webpack
-window.editTask = editTask;
+// window.editTask = editTask;
 window.deleteTask = deleteTask; 
