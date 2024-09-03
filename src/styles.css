@@ -11,8 +11,8 @@ body {
     font-family: "Raleway", sans-serif;
     height:100vh;
     display: grid;
-    grid-template-columns: 1fr 7fr;
-    gap: 30px;
+    grid-template-columns: 1fr 8fr;
+    gap: 12px;
     background-image: linear-gradient(var(--secondary-color), var(--primary-color));
     font-size: 24px;
 }
@@ -23,6 +23,12 @@ button {
     outline: none;
     background-color: var(--primary-color);
     border-color: var(--secondary-color);
+}
+
+#sidebar {
+    background-color: #025678;
+    padding: 0 4px;
+    color: var(--secondary-color);
 }
 
 #myProjectsHeader {
