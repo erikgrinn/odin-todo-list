@@ -12,7 +12,7 @@ body {
     min-height: 100vh;
     height:100%;
     display: grid;
-    grid-template-columns: 1fr 8fr;
+    grid-template-columns: 2fr 13fr;
     gap: 12px;
     background-image: linear-gradient(var(--secondary-color), var(--primary-color));
     font-size: 24px;
@@ -50,6 +50,7 @@ button {
     font-size: 20px;
     height: 30px;
     width: auto;
+    border-radius: 24px;
 }
 
 /* #addProject,
