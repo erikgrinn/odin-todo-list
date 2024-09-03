@@ -27,7 +27,7 @@ button {
 }
 
 #sidebar {
-    background-color: #025678;
+    background-color: var(--secondary-color);
     padding: 0 4px;
     color: white;
 }
@@ -76,14 +76,8 @@ button {
 #newTitle {
     height: 25px;
     width: 150px;
-    /* font: inherit; */
     outline: none;
 }
-
-/* #main {
-    width: auto;
-    height: auto;
-} */
 
 #currentProjectTitle {
     display: flex;

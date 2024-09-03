@@ -7,7 +7,9 @@ const projectTemplate = document.createElement('button')
 const addProjectBtn = document.getElementById('addProject')
 const dialogTitle = document.querySelector('#dialogTitle')
 const projectTitleForm = document.getElementById('projectTitleForm')
+const currentProject = document.getElementById('currentProject')
 
+// currentProject child element count issues?
 
 function addProjectTitle(event) {
     dialogTitle.showModal()
@@ -22,6 +24,14 @@ function addProjectTitle(event) {
             newProj.textContent = projTitle
             newProj.setAttribute('class', projTitle.replace(/\s+/g, '-')) // class names can't have spaces
             projectTitles.appendChild(newProj)
+
+            currentProject.children[0].querySelector('b').textContent = projTitle
+            if (currentProject.children[1].children[1]) {
+                for (let i=1; i<currentProject.children[1].childElementCount; i++) {
+                    console.log(currentProject.children[1].childElementCount)
+                    currentProject.children[1].children[i].remove() // want to keep first invisible empty taskCard
+                }
+            }
         }
 
         projectTitleForm.reset()
@@ -38,7 +48,6 @@ function addProjectTitle(event) {
 addProjectBtn.addEventListener('click', () => addProjectTitle())
 
 // main/tasks
-const currentProject = document.getElementById('currentProject')
 const taskSection = currentProject.children[1]
 const taskCardTemplate = document.querySelector('.taskCard')
 const addTaskBtn = document.getElementById('addTask')
