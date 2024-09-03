@@ -3,13 +3,20 @@ body {
     height: 100vh;
     display: flex;
     gap: 30px;
-    background-image: linear-gradient(#ddd, #d58337)
+    background-image: linear-gradient(#ddd, #d58337);
+    font-size: 24px;
 }
 
 button {
     border-color: #d58337;
     border-radius: 24px;
     outline: none;
+}
+
+#myProjectsHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 #projectTitles {
@@ -19,14 +26,19 @@ button {
     gap: 4px;
   }
 
-#addProject {
+#addProject,
+#addTask {
     border-radius: 50%;
 }
 
-/* #projectTitleForm {
 
-} */
 
 #dialogTitle {
     border-radius: 24px;
+}
+
+#currentProjectTitle {
+    display: flex;
+    align-items: center;
+    gap: 6px;
 }

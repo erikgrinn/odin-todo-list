@@ -8,7 +8,7 @@ const addProjectBtn = document.getElementById('addProject')
 const dialogTitle = document.querySelector('#dialogTitle')
 
 const currentProject = document.getElementById('currentProject')
-
+const dialogContent = document.getElementById('dialogContent')
 
 
 function addProjectTitle(event) {

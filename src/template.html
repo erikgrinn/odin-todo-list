@@ -20,8 +20,10 @@
         </div>
 
         <div id="myProjects">
-            <span><b>My Projects</b></span>
-            <span><button id="addProject">+</button></span>
+            <div id="myProjectsHeader">
+                <b>My Projects</b>
+                <button id="addProject">+</button>
+            </div>
             <div id="projectTitles">
                 <dialog id="dialogTitle">
                     <form id="projectTitleForm" formmethod="dialog">
@@ -43,10 +45,15 @@
             </form>
         </dialog>
         <div id="currentProject">
-            <div class="currentProjectTitle"><b>Home</b></div>
-            <div class="taskCard">
-                <div class="taskTitle">I am title</div>
-                <div class="taskDescription"><em>I am description</em></div>
+            <div class="section">
+                <div id="currentProjectTitle">
+                    <b>Home</b>
+                    <button id="addTask">+</button>
+                </div>
+                <div class="taskCard">
+                    <div class="taskTitle"></div>
+                    <div class="taskDescription"><em></em></div>
+                </div>
             </div>
         </div>
     </div>
