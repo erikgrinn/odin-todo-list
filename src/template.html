@@ -35,8 +35,15 @@
         </div>
     </div>
     <div id="main">
+        <dialog id="dialogContent">
+            <form id="projectContentForm" formmethod="dialog">
+                <input type="text" id="newTaskTitle" placeholder="Title" required>
+                <button type="submit">Add Project</button>
+                <button type="button" id="cancelTask">Cancel</button>
+            </form>
+        </dialog>
         <div id="currentProject">
-            <div class="projectTitle"><b>Home</b></div>
+            <div class="currentProjectTitle"><b>Home</b></div>
             <div class="taskCard">
                 <div class="taskTitle">I am title</div>
                 <div class="taskDescription"><em>I am description</em></div>
