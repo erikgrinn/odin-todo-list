@@ -3,7 +3,8 @@
 
 :root {
     --primary-color: #d58337;
-    --secondary-color: #aeaeae;
+    --secondary-color: #025678;
+    --tertiary-color: #aeaeae;
 }
 
 body {
@@ -14,7 +15,7 @@ body {
     display: grid;
     grid-template-columns: 2fr 13fr;
     gap: 12px;
-    background-image: linear-gradient(var(--secondary-color), var(--primary-color));
+    background-image: linear-gradient(var(--tertiary-color), var(--primary-color));
     font-size: 24px;
 }
 
@@ -23,7 +24,7 @@ button {
     border-radius: 6px;
     outline: none;
     background-color: var(--primary-color);
-    border-color: var(--secondary-color);
+    border-color: var(--tertiary-color);
 }
 
 #sidebar {
@@ -61,7 +62,7 @@ button {
 #dialogTitle,
 #dialogContent {
     border-radius: 24px;
-    /* background-color: var(--secondary-color); */
+    /* background-color: var(--tertiary-color); */
 }
 
 #projectTitleForm,
@@ -103,9 +104,9 @@ button {
     flex-direction: column;
     width: 92%;
     background-color: white;
-    border-left: 8px solid var(--primary-color);
+    border-left: 8px solid var(--secondary-color);
     border-radius: 8px;
-    box-shadow: 2px 2px 2px rgb(0, 0, 0, 0.2);
+    box-shadow: 12px 12px 12px rgb(0, 0, 0, 0.25);
     transition: .2s;
     margin-bottom: 6px;
 }
