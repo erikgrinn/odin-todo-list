@@ -15,6 +15,16 @@ addProjectBtn.addEventListener('click', addProjectTitle)
 
 function addProjectTitle(event) {
     // const dialog = document.createElement('dialog')
+    // const formTitle = document.createElement('form')
+    // formTitle.setAttribute('formmethod', 'dialog')
+    // const inputForm = document.createElement('input')
+    // inputForm.setAttribute('type', 'text')
+    // formTitle.appendChild(inputForm)
+    // dialog.appendChild(formTitle)
+    // projectTitles.appendChild(dialog)
+    // dialog.showModal()
+    // console.log(dialog)
+
     const projName = prompt('enter project title')
     let newProj = projectTemplate.cloneNode()
     newProj.textContent = projName
