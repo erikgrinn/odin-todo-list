@@ -116,8 +116,21 @@ button {
 }
 
 .taskTitle {
-    font-weight: bold;
     margin-bottom: 8px;
+}
+
+.taskDescription {
+    font-size: 20px;
+}
+
+.taskDate {
+    font-weight: lighter;
+    font-size: 16px;
+}
+
+.taskPriority {
+    font-weight: lighter;
+    font-size: 16px;
 }
 
 .taskCard .icons {
@@ -125,5 +138,5 @@ button {
     margin-top: auto;
     align-content: end;
     justify-content: right;
-    gap: 8px;
+    gap: 4px;
 }
