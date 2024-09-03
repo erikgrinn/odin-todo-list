@@ -63,54 +63,15 @@ function addTask(event) {
 
 addTaskBtn.addEventListener('click', () => addTask())
 
-// const currentProject = document.getElementById('currentProject')
-// const taskSection = currentProject.children[1]
-// const taskCardTemplate = document.querySelector('.taskCard')
-// const dialogContent = document.getElementById('dialogContent')
-// const taskContentForm = document.getElementById('taskContentForm')
-// const addTaskBtn = document.getElementById('addTask')
 
-// function addTask(event) {
-//     dialogContent.showModal()
-
-//     taskContentForm.addEventListener('submit', function(event) {
-//         event.preventDefault();
-    
-//         const taskTitle = document.getElementById('newTaskTitle').value.trim()
-//         const taskDescription = document.getElementById('newTaskDescription').value.trim()
-//         const taskDate = document.getElementById('newTaskDate').value
-//         const taskPriority = document.getElementById('newTaskPriority').value
-
-
-//         if (taskTitle) { //needed to prevent empty buttons being added
-//             let newTask = taskCardTemplate.cloneNode(true) // clone node with children
-//             newTask.style.display = 'block'
-//             newTask.querySelector('.taskTitle').textContent = taskTitle
-//             newTask.querySelector('.taskDescription').textContent = taskDescription
-//             newTask.querySelector('.taskDate').textContent = taskDate
-//             newTask.querySelector('.taskPriority').textContent = taskPriority
-
-//             newTask.setAttribute('data-task-title', taskTitle.replace(/\s+/g, '-')) // class names can't have spaces
-//             taskSection.appendChild(newTask)
-//         }
-
-//         taskContentForm.reset()
-//         dialogContent.close();
-//     })
-    
-//     const cancelBtn = document.getElementById('cancelTask')
-//     cancelBtn.addEventListener('click', () => {
-//       taskContentForm.reset()
-//       dialogContent.close()
-//     })
-// }
-
-// addTaskBtn.addEventListener('click', () => addTask())
-
-
+function editTask(target) {
+    const taskCard = target.closest('.taskCard');
+}
 function deleteTask(target) {
     const taskCard = target.closest('.taskCard');
     taskCard.remove();
 }
 
-window.deleteTask = deleteTask; // global scope due to webpack
+// global scope due to webpack
+window.editTask = editTask;
+window.deleteTask = deleteTask; 

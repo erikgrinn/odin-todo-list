@@ -59,17 +59,21 @@
                             <input type="text" id="newTaskTitle" placeholder="Title">
                         </div>
                         <div class="taskDescription">
-                            <input type="text" id="newTaskDescription" placeholder="Description">
+                            <textarea rows="2" id="newTaskDescription" placeholder="Description" style="font-weight: lighter"></textarea>
                         </div>
-                        <div class="taskDate">
-                            <input type="text" id="newTaskDate" placeholder="Date">
-                        </div>
-                        <div class="taskPriority">
-                            <input type="text" id="newTaskPriority" placeholder="Priority">
-                        </div>
-                        <div class="icons">
-                            <img src="./images/pencil-outline.svg" heigh="25px" width="25px" onclick="editTask(this)" style="cursor: pointer">
-                            <img src="./images/delete-outline.svg" heigh="25px" width="25px" onclick="deleteTask(this)" style="cursor: pointer">
+                        <div class="bottomCard">
+                            <div class="dateandpriority">
+                                <div class="taskDate">
+                                    <input type="text" id="newTaskDate" placeholder="No Date">
+                                </div>
+                                <div class="taskPriority">
+                                    <input type="text" id="newTaskPriority" placeholder="No Priority">
+                                </div>
+                            </div>
+                            <div class="icons">
+                                <img src="./images/pencil-outline.svg" heigh="25px" width="25px" onclick="editTask(this)" style="cursor: pointer">
+                                <img src="./images/delete-outline.svg" heigh="25px" width="25px" onclick="deleteTask(this)" style="cursor: pointer">
+                            </div>
                         </div>
                     </form>
                 </div>
