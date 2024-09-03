@@ -39,7 +39,7 @@ addProjectBtn.addEventListener('click', addProjectTitle)
 
 // main/tasks
 const currentProject = document.getElementById('currentProject')
-const section = currentProject.children[0]
+const taskSection = currentProject.children[1]
 const taskCardTemplate = document.querySelector('.taskCard')
 const dialogContent = document.getElementById('dialogContent')
 const taskContentForm = document.getElementById('taskContentForm')
@@ -66,8 +66,8 @@ function addTask(event) {
             newTask.querySelector('.taskPriority').textContent = taskPriority
 
             newTask.setAttribute('data-task-title', taskTitle.replace(/\s+/g, '-')) // class names can't have spaces
-            currentProject.append(newTask)
-            // section.appendChild(newTask) // implement sections?
+            // currentProject.append(newTask)
+            taskSection.appendChild(newTask) // implement sections?
         }
 
         taskContentForm.reset()
