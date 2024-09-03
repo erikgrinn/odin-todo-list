@@ -11,26 +11,41 @@ import {storageAvailable} from "./storage.js";
 const projectTitles = document.getElementById('projectTitles')
 const projectTemplate = document.createElement('button')
 const addProjectBtn = document.getElementById('addProject')
-addProjectBtn.addEventListener('click', addProjectTitle)
+const dialog = document.querySelector('dialog')
+
 
 function addProjectTitle(event) {
-    // const dialog = document.createElement('dialog')
-    // const formTitle = document.createElement('form')
-    // formTitle.setAttribute('formmethod', 'dialog')
-    // const inputForm = document.createElement('input')
-    // inputForm.setAttribute('type', 'text')
-    // formTitle.appendChild(inputForm)
-    // dialog.appendChild(formTitle)
-    // projectTitles.appendChild(dialog)
-    // dialog.showModal()
-    // console.log(dialog)
 
-    const projName = prompt('enter project title')
-    let newProj = projectTemplate.cloneNode()
-    newProj.textContent = projName
-    newProj.setAttribute('class', newProj.textContent.replace(/\s+/g, '-')) // class names can't have spaces
-    projectTitles.appendChild(newProj)
+
+
+    // const projName = prompt('enter project title')
+    // let newProj = projectTemplate.cloneNode()
+    // newProj.textContent = projName
+    // newProj.setAttribute('class', newProj.textContent.replace(/\s+/g, '-')) // class names can't have spaces
+    // projectTitles.appendChild(newProj)
 }
 
+// addProjectBtn.addEventListener('click', addProjectTitle)
+addProjectBtn.addEventListener('click', () => dialog.showModal())
 
-console.log(projectTitles)
+const projectTitleForm = document.getElementById('projectTitleForm')
+projectTitleForm.addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    const title = document.getElementById('title').value
+
+    let newProj = projectTemplate.cloneNode()
+    newProj.textContent = title
+    newProj.setAttribute('class', title.replace(/\s+/g, '-')) // class names can't have spaces
+    projectTitles.appendChild(newProj)
+
+    projectTitleForm.reset()
+    dialog.close();
+})
+
+const cancelBtn = document.getElementById('cancel')
+cancelBtn.addEventListener('click', () => {
+  projectTitleForm.reset()
+  dialog.close()
+})
+
