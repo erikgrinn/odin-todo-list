@@ -73,6 +73,6 @@ function deleteTask(target) {
     taskCard.remove();
 }
 
-// global scope due to webpack
+// global scope due to webpack (could try making new module and importing)
 // window.editTask = editTask;
 window.deleteTask = deleteTask; 

@@ -47,6 +47,7 @@ button {
 }
 
 #projectTitles button {
+    font-family: inherit;
     font-size: 20px;
     height: 30px;
     width: auto;
@@ -64,8 +65,7 @@ button {
     /* background-color: var(--tertiary-color); */
 }
 
-#projectTitleForm,
-#taskContentForm {
+#projectTitleForm {
     width: 200px;
     display: flex;
     flex-direction: column;
@@ -73,9 +73,10 @@ button {
     gap: 12px;
 }
 
-#newTitle,
-#newTaskTitle,
-#newTaskDescription {
+#newTitle {
+    height: 25px;
+    width: 150px;
+    /* font: inherit; */
     outline: none;
 }
 
