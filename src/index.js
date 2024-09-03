@@ -66,8 +66,7 @@ function addTask(event) {
             newTask.querySelector('.taskPriority').textContent = taskPriority
 
             newTask.setAttribute('data-task-title', taskTitle.replace(/\s+/g, '-')) // class names can't have spaces
-            // currentProject.append(newTask)
-            taskSection.appendChild(newTask) // implement sections?
+            taskSection.appendChild(newTask)
         }
 
         taskContentForm.reset()

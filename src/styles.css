@@ -52,7 +52,7 @@ button {
 #dialogTitle,
 #dialogContent {
     border-radius: 24px;
-    background-color: var(--secondary-color);
+    /* background-color: var(--secondary-color); */
 }
 
 #projectTitleForm,
@@ -70,17 +70,23 @@ button {
     outline: none;
 }
 
+#main {
+    width: auto;
+    height: auto;
+}
+
 #currentProjectTitle {
     display: flex;
     align-items: center;
     margin-bottom: 8px;
-    /* gap: 6px; */
+    gap: 6px;
 }
 
 .taskSection {
     display: flex;
     flex-direction: column;
-    gap: 6px;
+    flex-flow: row wrap;
+    gap: 12px;
 }
 
 .taskCard {
