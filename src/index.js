@@ -26,10 +26,10 @@ function addProjectTitle(event) {
             projectTitles.appendChild(newProj)
 
             currentProject.children[0].querySelector('b').textContent = projTitle
+            // remove all tasks except first hidden empty taskCard
             if (currentProject.children[1].children[1]) {
-                for (let i=1; i<currentProject.children[1].childElementCount; i++) {
-                    console.log(currentProject.children[1].childElementCount)
-                    currentProject.children[1].children[i].remove() // want to keep first invisible empty taskCard
+                for (let i = currentProject.children[1].children.length-1; i > 0; i--) {
+                    currentProject.children[1].children[i].remove()
                 }
             }
         }
