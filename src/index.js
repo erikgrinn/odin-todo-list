@@ -53,12 +53,19 @@ function addTask(event) {
     
         const taskTitle = document.getElementById('newTaskTitle').value.trim()
         const taskDescription = document.getElementById('newTaskDescription').value.trim()
+        const taskDate = document.getElementById('newTaskDate').value
+        const taskPriority = document.getElementById('newTaskPriority').value
+
 
         if (taskTitle) { //needed to prevent empty buttons being added
             let newTask = taskCardTemplate.cloneNode(true) // clone node with children
+            newTask.style.display = 'block'
             newTask.querySelector('.taskTitle').textContent = taskTitle
             newTask.querySelector('.taskDescription').textContent = taskDescription
-            newTask.setAttribute('class', taskTitle.replace(/\s+/g, '-')) // class names can't have spaces
+            newTask.querySelector('.taskDate').textContent = taskDate
+            newTask.querySelector('.taskPriority').textContent = taskPriority
+
+            newTask.setAttribute('data-task-title', taskTitle.replace(/\s+/g, '-')) // class names can't have spaces
             currentProject.append(newTask)
             // section.appendChild(newTask) // implement sections?
         }
