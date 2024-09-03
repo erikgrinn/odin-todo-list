@@ -15,37 +15,32 @@ const dialog = document.querySelector('dialog')
 
 
 function addProjectTitle(event) {
+    dialog.showModal()
 
-
-
-    // const projName = prompt('enter project title')
-    // let newProj = projectTemplate.cloneNode()
-    // newProj.textContent = projName
-    // newProj.setAttribute('class', newProj.textContent.replace(/\s+/g, '-')) // class names can't have spaces
-    // projectTitles.appendChild(newProj)
+    const projectTitleForm = document.getElementById('projectTitleForm')
+    projectTitleForm.addEventListener('submit', function(event) {
+        event.preventDefault();
+    
+        const title = document.getElementById('title').value
+    
+        let newProj = projectTemplate.cloneNode()
+        newProj.textContent = title
+        newProj.setAttribute('class', title.replace(/\s+/g, '-')) // class names can't have spaces
+        projectTitles.appendChild(newProj)
+    
+        projectTitleForm.reset()
+        dialog.close();
+    })
+    
+    const cancelBtn = document.getElementById('cancel')
+    cancelBtn.addEventListener('click', () => {
+      projectTitleForm.reset()
+      dialog.close()
+    })
 }
 
 // addProjectBtn.addEventListener('click', addProjectTitle)
-addProjectBtn.addEventListener('click', () => dialog.showModal())
+addProjectBtn.addEventListener('click', addProjectTitle)
 
-const projectTitleForm = document.getElementById('projectTitleForm')
-projectTitleForm.addEventListener('submit', function(event) {
-    event.preventDefault();
 
-    const title = document.getElementById('title').value
-
-    let newProj = projectTemplate.cloneNode()
-    newProj.textContent = title
-    newProj.setAttribute('class', title.replace(/\s+/g, '-')) // class names can't have spaces
-    projectTitles.appendChild(newProj)
-
-    projectTitleForm.reset()
-    dialog.close();
-})
-
-const cancelBtn = document.getElementById('cancel')
-cancelBtn.addEventListener('click', () => {
-  projectTitleForm.reset()
-  dialog.close()
-})
 
