@@ -110,6 +110,10 @@ button {
     margin-bottom: 6px;
 }
 
+#taskCardForm input {
+    border: none;
+}
+
 .taskCard:hover {
     border-left-width: 12px;
 }
