@@ -5,8 +5,7 @@ body {
     background-image: linear-gradient(#ddd, #d58337)
 }
 
-ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
+#projectTitles {
+    display: flex;
+    flex-direction: column;
   }
