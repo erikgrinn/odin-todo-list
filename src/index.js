@@ -21,7 +21,7 @@ function addProjectTitle(event) {
     projectTitleForm.addEventListener('submit', function(event) {
         event.preventDefault();
     
-        const title = document.getElementById('newTitle').value
+        const title = document.getElementById('newTitle').value.trim();
         if (title) { //needed to prevent empty buttons being added
             let newProj = projectTemplate.cloneNode()
             newProj.textContent = title
@@ -41,25 +41,4 @@ function addProjectTitle(event) {
 }
 
 addProjectBtn.addEventListener('click', addProjectTitle)
-
-// const projectTitleForm = document.getElementById('projectTitleForm')
-// projectTitleForm.addEventListener('submit', function(event) {
-//     event.preventDefault();
-
-//     const title = document.getElementById('newTitle').value
-
-//     let newProj = projectTemplate.cloneNode()
-//     newProj.textContent = title
-//     newProj.setAttribute('class', title.replace(/\s+/g, '-')) // class names can't have spaces
-//     projectTitles.appendChild(newProj)
-
-//     projectTitleForm.reset()
-//     dialogTitle.close();
-// })
-
-// const cancelBtn = document.getElementById('cancelTitle')
-// cancelBtn.addEventListener('click', () => {
-//   projectTitleForm.reset()
-//   dialogTitle.close()
-// })
 
