@@ -19,7 +19,7 @@ body {
 
 button {
     border-color: var(--primary-color);
-    border-radius: 24px;
+    border-radius: 6px;
     outline: none;
     background-color: var(--primary-color);
     border-color: var(--secondary-color);
@@ -51,10 +51,10 @@ button {
     width: auto;
 }
 
-#addProject,
+/* #addProject,
 #addTask {
-    border-radius: 50%;
-}
+
+} */
 
 #dialogTitle,
 #dialogContent {
