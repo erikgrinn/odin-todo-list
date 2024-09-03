@@ -1,11 +1,32 @@
 body {
+    /* margin: 0; */
     height: 100vh;
     display: flex;
     gap: 30px;
     background-image: linear-gradient(#ddd, #d58337)
 }
 
+button {
+    border-color: #d58337;
+    border-radius: 24px;
+    outline: none;
+}
+
 #projectTitles {
     display: flex;
     flex-direction: column;
+    margin-top: 4px;
+    gap: 4px;
   }
+
+#addProject {
+    border-radius: 50%;
+}
+
+/* #projectTitleForm {
+
+} */
+
+#dialogTitle {
+    border-radius: 24px;
+}
