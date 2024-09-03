@@ -1,7 +1,7 @@
 import "./styles.css";
 // import {storageAvailable} from "./storage.js";
 
-
+// sidebar
 const projectTitles = document.getElementById('projectTitles')
 const projectTemplate = document.createElement('button')
 const addProjectBtn = document.getElementById('addProject')
@@ -37,7 +37,7 @@ function addProjectTitle(event) {
 
 addProjectBtn.addEventListener('click', addProjectTitle)
 
-
+// main/tasks
 const currentProject = document.getElementById('currentProject')
 const taskCardTemplate = document.querySelector('.taskCard')
 const dialogContent = document.getElementById('dialogContent')
@@ -51,7 +51,6 @@ function addTask(event) {
         event.preventDefault();
     
         const taskTitle = document.getElementById('newTaskTitle').value.trim()
-        console.log(taskTitle)
         const taskDescription = document.getElementById('newTaskDescription').value.trim()
 
         if (taskTitle) { //needed to prevent empty buttons being added
@@ -75,3 +74,6 @@ function addTask(event) {
 }
 
 addTaskBtn.addEventListener('click', addTask)
+
+
+//

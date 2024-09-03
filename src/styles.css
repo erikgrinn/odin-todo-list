@@ -1,5 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+/* #d58337 */
 
+:root {
+    --primary-color: #d58337;
+    --secondary-color: #aeaeae;
+}
 
 body {
     /* margin: 0; */
@@ -7,20 +12,23 @@ body {
     height: 100vh;
     display: flex;
     gap: 30px;
-    background-image: linear-gradient(#ddd, #d58337);
+    background-image: linear-gradient(#312626, var(--primary-color));
+
     font-size: 24px;
 }
 
 button {
-    border-color: #d58337;
+    border-color: var(--primary-color);
     border-radius: 24px;
     outline: none;
+    background-color: var(--primary-color);
 }
 
 #myProjectsHeader {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: left;
+    gap: 6px;
 }
 
 #projectTitles {
@@ -28,15 +36,38 @@ button {
     flex-direction: column;
     margin-top: 4px;
     gap: 4px;
-  }
+}
+
+#projectTitles button {
+    font-size: 20px;
+    height: 30px;
+    width: auto;
+}
 
 #addProject,
 #addTask {
     border-radius: 50%;
 }
 
-#dialogTitle {
+#dialogTitle,
+#dialogContent {
     border-radius: 24px;
+    background-color: var(--secondary-color);
+}
+
+#projectTitleForm,
+#taskContentForm {
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+}
+
+#newTitle,
+#newTaskTitle,
+#newTaskDescription {
+    outline: none;
 }
 
 #currentProjectTitle {
