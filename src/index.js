@@ -6,23 +6,21 @@ const projectTitles = document.getElementById('projectTitles')
 const projectTemplate = document.createElement('button')
 const addProjectBtn = document.getElementById('addProject')
 const dialogTitle = document.querySelector('#dialogTitle')
-
-const currentProject = document.getElementById('currentProject')
-const dialogContent = document.getElementById('dialogContent')
+const projectTitleForm = document.getElementById('projectTitleForm')
 
 
 function addProjectTitle(event) {
     dialogTitle.showModal()
 
-    const projectTitleForm = document.getElementById('projectTitleForm')
     projectTitleForm.addEventListener('submit', function(event) {
         event.preventDefault();
     
-        const title = document.getElementById('newTitle').value.trim();
-        if (title) { //needed to prevent empty buttons being added
+        const projTitle = document.getElementById('newTitle').value.trim();
+
+        if (projTitle) { //needed to prevent empty buttons being added
             let newProj = projectTemplate.cloneNode()
-            newProj.textContent = title
-            newProj.setAttribute('class', title.replace(/\s+/g, '-')) // class names can't have spaces
+            newProj.textContent = projTitle
+            newProj.setAttribute('class', projTitle.replace(/\s+/g, '-')) // class names can't have spaces
             projectTitles.appendChild(newProj)
         }
 
@@ -39,3 +37,41 @@ function addProjectTitle(event) {
 
 addProjectBtn.addEventListener('click', addProjectTitle)
 
+
+const currentProject = document.getElementById('currentProject')
+const taskCardTemplate = document.querySelector('.taskCard')
+const dialogContent = document.getElementById('dialogContent')
+const taskContentForm = document.getElementById('taskContentForm')
+const addTaskBtn = document.getElementById('addTask')
+
+function addTask(event) {
+    dialogContent.showModal()
+
+    taskContentForm.addEventListener('submit', function(event) {
+        event.preventDefault();
+    
+        const taskTitle = document.getElementById('newTaskTitle').value.trim()
+        console.log(taskTitle)
+        const taskDescription = document.getElementById('newTaskDescription').value.trim()
+
+        if (taskTitle) { //needed to prevent empty buttons being added
+            let newTask = taskCardTemplate.cloneNode(true) // clone node with children
+            console.log(newTask)
+            newTask.querySelector('.taskTitle').textContent = taskTitle
+            newTask.querySelector('.taskDescription').textContent = taskDescription
+            newTask.setAttribute('class', taskTitle.replace(/\s+/g, '-')) // class names can't have spaces
+            currentProject.appendChild(newTask)
+        }
+
+        taskContentForm.reset()
+        dialogContent.close();
+    })
+    
+    const cancelBtn = document.getElementById('cancelTask')
+    cancelBtn.addEventListener('click', () => {
+      taskContentForm.reset()
+      dialogContent.close()
+    })
+}
+
+addTaskBtn.addEventListener('click', addTask)
