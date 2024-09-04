@@ -92,17 +92,8 @@ function addTask(event) {
 
 addTaskBtn.addEventListener('click', () => addTask())
 
-// maybe could use this to reassign tasknums?
 function setTaskNum(newTask) {
-    for (let i=0; i<taskSection.children.length; i++) {
-        if (taskSection.children[i].getAttribute('data-task-num') != i) {
-            newTask.setAttribute('data-task-num', i)
-        } 
-    }
-
-    // newTask.setAttribute('data-task-num', i)
-    // let taskNum = taskSection.children.length
-    // newTask.setAttribute('data-task-num', taskNum)
+    newTask.setAttribute('data-task-num', taskSection.children.length)
 }
 
 
@@ -111,12 +102,18 @@ function editTask(target) {
 }
 
 function saveTask(target) {
-    
+    console.log('empty function')
 }
 
 function deleteTask(target) {
+    // remove target task card
     const taskCard = target.closest('.taskCard');
     taskCard.remove();
+
+    // reassign task-nums
+    for (let i=0; i<taskSection.children.length; i++) {
+        taskSection.children[i].setAttribute('data-task-num', i)
+    }
 }
 
 // global scope due to webpack (could try making new module and importing)
