@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Todo List</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='84bb4fc080631c2605f1.css'>
+    <script defer src='77ed1889b19147f679c3.js'></script>
+<script defer src="main.js"></script></head>
+<body>
+    <div id="sidebar">
+        <div id="mainList">
+            <div>Add task</div>
+            <div>Search</div>
+            <div>Today</div>
+            <div>Upcoming</div>
+            <div>Filters & Labels</div>
+            <br>
+        </div>
+
+        <div id="myProjects">
+            <div id="myProjectsHeader">
+                <b>My Projects</b>
+                <button id="addProject">+</button>
+            </div>
+            <div id="projectTitles">
+                <dialog id="dialogTitle">
+                    <form id="projectTitleForm" formmethod="dialog">
+                        <input type="text" id="newTitle" placeholder="Title" required>
+                        <button type="submit">Add Project</button>
+                        <button type="button" id="cancelTitle">Cancel</button>
+                    </form>
+                </dialog>
+                <button class="Home">Home</button>
+            </div>
+        </div>
+    </div>
+    <div id="main">
+        <dialog id="dialogContent">
+            <form id="taskContentForm" formmethod="dialog">
+                <input type="text" id="newTaskTitle" placeholder="Title" required>
+                <input type="text" id="newTaskDescription" placeholder="Description" required>
+                <button type="submit">Add Project</button>
+                <button type="button" id="cancelTask">Cancel</button>
+            </form>
+        </dialog>
+        <div id="currentProject">
+            <div class="section">
+                <div id="currentProjectTitle">
+                    <b>Home</b>
+                    <button id="addTask">+</button>
+                </div>
+                <div class="taskCard">
+                    <div class="taskTitle"></div>
+                    <div class="taskDescription"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
