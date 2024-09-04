@@ -64,13 +64,12 @@ function addTask(event) {
         let newTask = taskCardTemplate.cloneNode(true) // clone node with children
         newTask.style.display = 'block'
 
-        setTaskNum(newTask)
+        setTaskNumProperties(newTask)
         taskSection.appendChild(newTask)
 
         // taskCardForm = document.querySelector(`[data-task-num]`) // this is the empty template form, but at least event handler is working
         let newTaskNum = newTask.getAttribute(`data-task-num`)
         const taskCardForm = document.querySelector(`form#A${newTaskNum}`);
-        // console.log(document.querySelector(`form[data-task-num="${newTaskNum}"]`))
         taskCardForm.addEventListener('submit', function(e) {
             e.preventDefault();
             console.log(e.target)
@@ -93,12 +92,10 @@ function addTask(event) {
 
 addTaskBtn.addEventListener('click', () => addTask())
 
-function setTaskNum(newTask) {
-    newTask.setAttribute('data-task-num', taskSection.children.length)
-    newTask.children[0].setAttribute('id', `A${taskSection.children.length}`)
-    newTask.querySelector('button[type="submit"]').setAttribute('form', `A${taskSection.children.length}`)
-    console.log(newTask.querySelector('button[type="submit"]'))
-
+function setTaskNumProperties(newTask) {
+    newTask.setAttribute('data-task-num', taskSection.children.length) // taskCard
+    newTask.children[0].setAttribute('id', `A${taskSection.children.length}`) // form id
+    newTask.querySelector('button[type="submit"]').setAttribute('form', `A${taskSection.children.length}`) // submit button tied to form id
 }
 
 function editTask(target) {
@@ -117,7 +114,9 @@ function deleteTask(target) {
     // reassign task-nums
     for (let i=0; i<taskSection.children.length; i++) {
         taskSection.children[i].setAttribute('data-task-num', i)
-        taskSection.children[i].children[0].setAttribute('data-task-num', i)
+        taskSection.children[i].children[0].setAttribute('id', `A${i}`) // form id
+        taskSection.children[i].querySelector('button[type="submit"]').setAttribute('form', `A${i}`) // submit button tied to form id
+
     }
 }
 
