@@ -51,8 +51,9 @@ addProjectBtn.addEventListener('click', () => addProjectTitle())
 const taskSection = currentProject.children[1]
 const taskCardTemplate = document.querySelector('.taskCard')
 const addTaskBtn = document.getElementById('addTask')
-// taskCardForm cloneNode / im manipulating the empty one
 
+
+// taskCardForm cloneNode / im manipulating the empty one
 function addTask(event) {
         const editBtn = document.getElementById('editBtn')
         editBtn.style.display = 'none'
@@ -60,23 +61,33 @@ function addTask(event) {
         const saveBtn = document.getElementById('saveBtn')
         saveBtn.style.display = 'block'
 
-        const taskCardForm = document.getElementById('taskCardForm')
-
         let newTask = taskCardTemplate.cloneNode(true) // clone node with children
         newTask.style.display = 'block'
-
-        // newTask.setAttribute('data-task-title', taskTitle.replace(/\s+/g, '-')) // class names can't have spaces
+        const taskNum = taskSection.children.length
+        newTask.setAttribute('data-task-num', taskNum)
         taskSection.appendChild(newTask)
-        // saveBtn.addEventListener('click', saveTask)
+
+        // const taskCardForm = document.getElementById('taskCardForm') // this is the empty template form, but at least event handler is working
+        const taskCardForm = document.querySelector(`[data-task-num="${taskNum}"]`)
+        console.log(taskCardForm)
         taskCardForm.addEventListener('submit', function(e) {
             e.preventDefault();
             console.log(e.target)
-            const taskTitle = taskCardForm.querySelector('#newTaskTitle').value.trim()
+            saveTask(e.target)
+        })
+
+
+
+        // newTask.setAttribute('data-task-title', taskTitle.replace(/\s+/g, '-')) // class names can't have spaces
+
+        // saveBtn.addEventListener('click', saveTask)
+
+
+            // const taskTitle = taskCardForm.querySelector('#newTaskTitle').value.trim()
         //     // const taskDescription = document.getElementById('newTaskDescription').value.trim()
         //     // const taskDate = document.getElementById('newTaskDate').value
         //     // const taskPriority = document.getElementById('newTaskPriority').value
-            console.log(taskTitle)
-        })
+
     }
 
 addTaskBtn.addEventListener('click', () => addTask())
@@ -86,9 +97,9 @@ function editTask(target) {
     const taskCard = target.closest('.taskCard');
 }
 
-// function saveTask(target) {
+function saveTask(target) {
     
-// }
+}
 
 function deleteTask(target) {
     const taskCard = target.closest('.taskCard');
