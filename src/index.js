@@ -54,7 +54,7 @@ const addTaskBtn = document.getElementById('addTask')
 
 function addTask(event) {
         const editBtn = document.getElementById('editBtn')
-        editBtn.style.display = 'none'
+        // editBtn.style.display = 'none'
 
         const saveBtn = document.getElementById('saveBtn')
         saveBtn.style.display = 'block'
