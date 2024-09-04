@@ -28,7 +28,7 @@
                 <dialog id="dialogTitle">
                     <form id="projectTitleForm" formmethod="dialog">
                         <input type="text" id="newTitle" placeholder="Title" required>
-                        <button type="submit">Add Project</button>
+                        <button type="submit" id="submitTitle" form="projectTitleForm">Add Project</button>
                         <button type="button" id="cancelTitle">Cancel</button>
                     </form>
                 </dialog>
@@ -56,7 +56,7 @@
                 <div class="taskCard" style="display: none">
                     <form id="taskCardForm">
                         <div class="taskTitle">
-                            <input type="text" id="newTaskTitle" placeholder="Title">
+                            <input type="text" id="newTaskTitle" placeholder="Title" required>
                         </div>
                         <div class="taskDescription">
                             <textarea rows="2" id="newTaskDescription" placeholder="Description" style="font-weight: lighter"></textarea>
@@ -71,9 +71,9 @@
                                 </div>
                             </div>
                             <div class="icons">
-                                <button><img id="editBtn" src="./images/pencil-outline.svg" heigh="25px" width="25px" onclick="editTask(this)"></button>
-                                <button><img id="saveBtn" src="./images/content-save-outline.svg" heigh="25px" width="25px" onclick="saveTask(this)"></button>
-                                <button><img id="deleteBtn" src="./images/delete-outline.svg" heigh="25px" width="25px" onclick="deleteTask(this)"></button>
+                                <button type="button" id="editBtn"><img src="./images/pencil-outline.svg" heigh="25px" width="25px"></button>
+                                <button type="submit" id="saveBtn" form="taskCardForm"><img src="./images/content-save-outline.svg" heigh="25px" width="25px"></button>
+                                <button type="button" id="deleteBtn"><img src="./images/delete-outline.svg" heigh="25px" width="25px" onclick="deleteTask(this)"></button>
                             </div>
                         </div>
                     </form>

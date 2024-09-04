@@ -9,7 +9,6 @@ const dialogTitle = document.querySelector('#dialogTitle')
 const projectTitleForm = document.getElementById('projectTitleForm')
 const currentProject = document.getElementById('currentProject')
 
-// currentProject child element count issues?
 
 function addProjectTitle(event) {
     dialogTitle.showModal()
@@ -26,6 +25,7 @@ function addProjectTitle(event) {
             projectTitles.appendChild(newProj)
 
             currentProject.children[0].querySelector('b').textContent = projTitle
+
             // remove all tasks except first hidden empty taskCard
             if (currentProject.children[1].children[1]) {
                 for (let i = currentProject.children[1].children.length-1; i > 0; i--) {
@@ -51,25 +51,33 @@ addProjectBtn.addEventListener('click', () => addProjectTitle())
 const taskSection = currentProject.children[1]
 const taskCardTemplate = document.querySelector('.taskCard')
 const addTaskBtn = document.getElementById('addTask')
+// taskCardForm cloneNode / im manipulating the empty one
 
 function addTask(event) {
         const editBtn = document.getElementById('editBtn')
-        // editBtn.style.display = 'none'
+        editBtn.style.display = 'none'
 
         const saveBtn = document.getElementById('saveBtn')
         saveBtn.style.display = 'block'
-        saveBtn.addEventListener('click', saveTask)
+
+        const taskCardForm = document.getElementById('taskCardForm')
 
         let newTask = taskCardTemplate.cloneNode(true) // clone node with children
         newTask.style.display = 'block'
-        // newTask.querySelector('.taskTitle').textContent = taskTitle
-        // newTask.querySelector('.taskDescription').textContent = taskDescription
-        // newTask.querySelector('.taskDate').textContent = taskDate
-        // newTask.querySelector('.taskPriority').textContent = taskPriority
 
         // newTask.setAttribute('data-task-title', taskTitle.replace(/\s+/g, '-')) // class names can't have spaces
         taskSection.appendChild(newTask)
-        }
+        // saveBtn.addEventListener('click', saveTask)
+        taskCardForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            console.log(e.target)
+            const taskTitle = taskCardForm.querySelector('#newTaskTitle').value.trim()
+        //     // const taskDescription = document.getElementById('newTaskDescription').value.trim()
+        //     // const taskDate = document.getElementById('newTaskDate').value
+        //     // const taskPriority = document.getElementById('newTaskPriority').value
+            console.log(taskTitle)
+        })
+    }
 
 addTaskBtn.addEventListener('click', () => addTask())
 
@@ -78,13 +86,9 @@ function editTask(target) {
     const taskCard = target.closest('.taskCard');
 }
 
-function saveTask(target) {
-    const taskTitle = document.getElementById('newTaskTitle').value.trim()
-    const taskDescription = document.getElementById('newTaskDescription').value.trim()
-    const taskDate = document.getElementById('newTaskDate').value
-    const taskPriority = document.getElementById('newTaskPriority').value
-    console.log(taskTitle)
-}
+// function saveTask(target) {
+    
+// }
 
 function deleteTask(target) {
     const taskCard = target.closest('.taskCard');
@@ -93,5 +97,5 @@ function deleteTask(target) {
 
 // global scope due to webpack (could try making new module and importing)
 window.editTask = editTask;
-window.saveTask = saveTask;
+// window.saveTask = saveTask;
 window.deleteTask = deleteTask; 
