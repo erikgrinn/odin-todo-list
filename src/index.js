@@ -64,12 +64,13 @@ function addTask(event) {
         let newTask = taskCardTemplate.cloneNode(true) // clone node with children
         newTask.style.display = 'block'
 
-        // should call separate function here to check if number already used, prevent duplicates
         setTaskNum(newTask)
         taskSection.appendChild(newTask)
 
-        const taskCardForm = document.getElementById('taskCardForm') // this is the empty template form, but at least event handler is working
-        console.log(taskCardForm)
+        // taskCardForm = document.querySelector(`[data-task-num]`) // this is the empty template form, but at least event handler is working
+        let newTaskNum = newTask.getAttribute(`data-task-num`)
+        const taskCardForm = document.querySelector(`form#A${newTaskNum}`);
+        // console.log(document.querySelector(`form[data-task-num="${newTaskNum}"]`))
         taskCardForm.addEventListener('submit', function(e) {
             e.preventDefault();
             console.log(e.target)
@@ -94,8 +95,11 @@ addTaskBtn.addEventListener('click', () => addTask())
 
 function setTaskNum(newTask) {
     newTask.setAttribute('data-task-num', taskSection.children.length)
-}
+    newTask.children[0].setAttribute('id', `A${taskSection.children.length}`)
+    newTask.querySelector('button[type="submit"]').setAttribute('form', `A${taskSection.children.length}`)
+    console.log(newTask.querySelector('button[type="submit"]'))
 
+}
 
 function editTask(target) {
     const taskCard = target.closest('.taskCard');
@@ -113,10 +117,11 @@ function deleteTask(target) {
     // reassign task-nums
     for (let i=0; i<taskSection.children.length; i++) {
         taskSection.children[i].setAttribute('data-task-num', i)
+        taskSection.children[i].children[0].setAttribute('data-task-num', i)
     }
 }
 
 // global scope due to webpack (could try making new module and importing)
 window.editTask = editTask;
-// window.saveTask = saveTask;
+window.saveTask = saveTask;
 window.deleteTask = deleteTask; 
