@@ -63,12 +63,12 @@ function addTask(event) {
 
         let newTask = taskCardTemplate.cloneNode(true) // clone node with children
         newTask.style.display = 'block'
-        const taskNum = taskSection.children.length
-        newTask.setAttribute('data-task-num', taskNum)
+
+        // should call separate function here to check if number already used, prevent duplicates
+        setTaskNum(newTask)
         taskSection.appendChild(newTask)
 
-        // const taskCardForm = document.getElementById('taskCardForm') // this is the empty template form, but at least event handler is working
-        const taskCardForm = document.querySelector(`[data-task-num="${taskNum}"]`)
+        const taskCardForm = document.getElementById('taskCardForm') // this is the empty template form, but at least event handler is working
         console.log(taskCardForm)
         taskCardForm.addEventListener('submit', function(e) {
             e.preventDefault();
@@ -91,6 +91,19 @@ function addTask(event) {
     }
 
 addTaskBtn.addEventListener('click', () => addTask())
+
+// maybe could use this to reassign tasknums?
+function setTaskNum(newTask) {
+    for (let i=0; i<taskSection.children.length; i++) {
+        if (taskSection.children[i].getAttribute('data-task-num') != i) {
+            newTask.setAttribute('data-task-num', i)
+        } 
+    }
+
+    // newTask.setAttribute('data-task-num', i)
+    // let taskNum = taskSection.children.length
+    // newTask.setAttribute('data-task-num', taskNum)
+}
 
 
 function editTask(target) {
