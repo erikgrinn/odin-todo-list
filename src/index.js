@@ -53,11 +53,12 @@ const taskCardTemplate = document.querySelector('.taskCard')
 const addTaskBtn = document.getElementById('addTask')
 
 function addTask(event) {
-    
-        const taskTitle = document.getElementById('newTaskTitle').value.trim()
-        const taskDescription = document.getElementById('newTaskDescription').value.trim()
-        const taskDate = document.getElementById('newTaskDate').value
-        const taskPriority = document.getElementById('newTaskPriority').value
+        const editBtn = document.getElementById('editBtn')
+        editBtn.style.display = 'none'
+
+        const saveBtn = document.getElementById('saveBtn')
+        saveBtn.style.display = 'block'
+        saveBtn.addEventListener('click', saveTask)
 
         let newTask = taskCardTemplate.cloneNode(true) // clone node with children
         newTask.style.display = 'block'
@@ -73,9 +74,16 @@ function addTask(event) {
 addTaskBtn.addEventListener('click', () => addTask())
 
 
-// function editTask(target) {
-//     const taskCard = target.closest('.taskCard');
-// }
+function editTask(target) {
+    const taskCard = target.closest('.taskCard');
+}
+
+function saveTask(target) {
+    const taskTitle = document.getElementById('newTaskTitle').value.trim()
+    const taskDescription = document.getElementById('newTaskDescription').value.trim()
+    const taskDate = document.getElementById('newTaskDate').value
+    const taskPriority = document.getElementById('newTaskPriority').value
+}
 
 function deleteTask(target) {
     const taskCard = target.closest('.taskCard');
@@ -83,5 +91,6 @@ function deleteTask(target) {
 }
 
 // global scope due to webpack (could try making new module and importing)
-// window.editTask = editTask;
+window.editTask = editTask;
+window.saveTask = saveTask;
 window.deleteTask = deleteTask; 

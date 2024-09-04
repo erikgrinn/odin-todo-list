@@ -37,7 +37,7 @@
         </div>
     </div>
     <div id="main">
-        <dialog id="dialogContent">
+        <!-- <dialog id="dialogContent">
             <form id="taskContentForm" formmethod="dialog">
                 <input type="text" id="newTaskTitle" placeholder="Title" required>
                 <input type="text" id="newTaskDescription" placeholder="Description" required>
@@ -46,7 +46,7 @@
                 <button type="submit">Add Project</button>
                 <button type="button" id="cancelTask">Cancel</button>
             </form>
-        </dialog>
+        </dialog> -->
         <div id="currentProject">
             <div id="currentProjectTitle">
                 <b>Home</b>
@@ -71,8 +71,9 @@
                                 </div>
                             </div>
                             <div class="icons">
-                                <!-- <img src="./images/pencil-outline.svg" heigh="25px" width="25px" onclick="editTask(this)" style="cursor: pointer"> -->
-                                <img src="./images/delete-outline.svg" heigh="25px" width="25px" onclick="deleteTask(this)" style="cursor: pointer">
+                                <img id="editBtn" src="./images/pencil-outline.svg" heigh="25px" width="25px" onclick="editTask(this)">
+                                <img id="saveBtn" src="./images/content-save-outline.svg" heigh="25px" width="25px" onclick="saveTask(this)">
+                                <img id="deleteBtn" src="./images/delete-outline.svg" heigh="25px" width="25px" onclick="deleteTask(this)">
                             </div>
                         </div>
                     </form>

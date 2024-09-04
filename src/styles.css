@@ -51,7 +51,8 @@ button {
     font-size: 20px;
     height: 30px;
     width: auto;
-    border-radius: 24px;
+    border-radius: 0 24px 24px 0;
+
 }
 
 /* #addProject,
@@ -159,4 +160,12 @@ button {
     align-content: end;
     justify-content: right;
     gap: 4px;
+}
+
+.taskCard .icons img {
+    cursor: pointer;
+}
+
+#saveBtn {
+    display: none;
 }
