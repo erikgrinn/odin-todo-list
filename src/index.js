@@ -8,7 +8,7 @@ const addProjectBtn = document.getElementById('addProject')
 const dialogTitle = document.querySelector('#dialogTitle')
 const projectTitleForm = document.getElementById('projectTitleForm')
 const currentProject = document.getElementById('currentProject')
-
+// const projectsCount = projectTitles.children.array.splice(1)
 
 function addProjectTitle(event) {
     dialogTitle.showModal()
@@ -67,10 +67,33 @@ function addTask(event) {
 
         let newTaskNum = newTask.getAttribute(`data-task-num`)
         const taskCardForm = document.querySelector(`form#A${newTaskNum}`);
+
+        // change event listeners
+        const taskTitle = taskCardForm.querySelector('#newTaskTitle')
+        taskTitle.addEventListener("change", () => {
+            let taskTitleContent = taskTitle.value.trim()
+            console.log(taskTitleContent)
+        });
+
+        const taskDescription = taskCardForm.querySelector('#newTaskDescription')
+        taskDescription.addEventListener("change", () => {
+            let taskDescriptionContent = taskDescription.value.trim()
+            console.log(taskDescriptionContent)
+        });
+        const taskDate = taskCardForm.querySelector('#newTaskDate')
+        taskDate.addEventListener("change", () => {
+            let taskDateContent = taskDate.value.trim()
+            console.log(taskDateContent)
+        });
+        const taskPriority = taskCardForm.querySelector('#newTaskPriority')
+        taskPriority.addEventListener("change", () => {
+            let taskPriorityContent = taskPriority.value.trim()
+            console.log(taskPriorityContent)
+        });
         taskCardForm.addEventListener('submit', function(e) {
             e.preventDefault();
-            console.log(e.target)
-            saveTask(e.target)
+            // console.log(e.target)
+            // saveTask(e.target)
         })
 
 
@@ -94,13 +117,15 @@ function editTask(target) {
 }
 
 function saveTask(target) {
-    console.log(target.querySelector('#newTaskTitle').value)
-    // console.log(document.querySelector('.newTaskTitle').value)
-        const taskTitle = target.querySelector('#newTaskTitle').value.trim()
-        const taskDescription = target.querySelector('#newTaskDescription').value.trim()
-        const taskDate = target.querySelector('#newTaskDate').value.trim()
-        const taskPriority = target.querySelector('#newTaskPriority').value.trim()
-        console.log(taskTitle,taskDescription,taskDate,taskPriority)
+    const taskTitle = target.querySelector('#newTaskTitle')
+    taskTitle.addEventListener("change", () => {
+        let taskTitleContent = taskTitle.value.trim()
+        console.log(taskTitleContent)
+    });
+    const taskDescription = target.querySelector('#newTaskDescription').value.trim()
+    const taskDate = target.querySelector('#newTaskDate').value.trim()
+    const taskPriority = target.querySelector('#newTaskPriority').value.trim()
+    console.log(taskTitle,taskDescription,taskDate,taskPriority)
 }
 
 function deleteTask(target) {
