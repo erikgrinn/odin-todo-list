@@ -52,8 +52,6 @@ const taskSection = currentProject.children[1]
 const taskCardTemplate = document.querySelector('.taskCard')
 const addTaskBtn = document.getElementById('addTask')
 
-
-// taskCardForm cloneNode / im manipulating the empty one
 function addTask(event) {
         const editBtn = document.getElementById('editBtn')
         editBtn.style.display = 'none'
@@ -67,7 +65,6 @@ function addTask(event) {
         setTaskNumProperties(newTask)
         taskSection.appendChild(newTask)
 
-        // taskCardForm = document.querySelector(`[data-task-num]`) // this is the empty template form, but at least event handler is working
         let newTaskNum = newTask.getAttribute(`data-task-num`)
         const taskCardForm = document.querySelector(`form#A${newTaskNum}`);
         taskCardForm.addEventListener('submit', function(e) {
@@ -81,12 +78,6 @@ function addTask(event) {
         // newTask.setAttribute('data-task-title', taskTitle.replace(/\s+/g, '-')) // class names can't have spaces
 
         // saveBtn.addEventListener('click', saveTask)
-
-
-            // const taskTitle = taskCardForm.querySelector('#newTaskTitle').value.trim()
-        //     // const taskDescription = document.getElementById('newTaskDescription').value.trim()
-        //     // const taskDate = document.getElementById('newTaskDate').value
-        //     // const taskPriority = document.getElementById('newTaskPriority').value
 
     }
 
@@ -103,7 +94,13 @@ function editTask(target) {
 }
 
 function saveTask(target) {
-    console.log('empty function')
+    console.log(target.querySelector('#newTaskTitle').value)
+    // console.log(document.querySelector('.newTaskTitle').value)
+        const taskTitle = target.querySelector('#newTaskTitle').value.trim()
+        const taskDescription = target.querySelector('#newTaskDescription').value.trim()
+        const taskDate = target.querySelector('#newTaskDate').value.trim()
+        const taskPriority = target.querySelector('#newTaskPriority').value.trim()
+        console.log(taskTitle,taskDescription,taskDate,taskPriority)
 }
 
 function deleteTask(target) {
