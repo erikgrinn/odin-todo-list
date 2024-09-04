@@ -83,6 +83,7 @@ function saveTask(target) {
     const taskDescription = document.getElementById('newTaskDescription').value.trim()
     const taskDate = document.getElementById('newTaskDate').value
     const taskPriority = document.getElementById('newTaskPriority').value
+    console.log(taskTitle)
 }
 
 function deleteTask(target) {

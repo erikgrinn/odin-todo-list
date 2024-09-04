@@ -154,16 +154,27 @@ button {
     
 }
 
-.taskCard .icons {
+/* .taskCard .icons {
     display: flex;
     margin-top: auto;
-    align-content: end;
+    align-items: center;
     justify-content: right;
     gap: 4px;
-}
+} */
 
 .taskCard .icons img {
     cursor: pointer;
+}
+
+.taskCard .icons button {
+    
+    background: none;
+	color: inherit;
+	border: none;
+	padding: 0;
+	font: inherit;
+	cursor: pointer;
+	outline: inherit;
 }
 
 #saveBtn {
