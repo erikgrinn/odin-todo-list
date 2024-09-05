@@ -6,7 +6,7 @@
     <title>Todo List</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel='stylesheet' type='text/css' media='screen' href='84bb4fc080631c2605f1.css'>
-    <script defer src='77ed1889b19147f679c3.js'></script>
+    <script defer src='a840dbf8d6d892290767.js'></script>
 <script defer src="main.js"></script></head>
 <body>
     <div id="sidebar">
@@ -18,7 +18,6 @@
             <div>Filters & Labels</div>
             <br>
         </div>
-
         <div id="myProjects">
             <div id="myProjectsHeader">
                 <b>My Projects</b>
@@ -28,7 +27,7 @@
                 <dialog id="dialogTitle">
                     <form id="projectTitleForm" formmethod="dialog">
                         <input type="text" id="newTitle" placeholder="Title" required>
-                        <button type="submit">Add Project</button>
+                        <button type="submit" id="submitTitle" form="projectTitleForm">Add Project</button>
                         <button type="button" id="cancelTitle">Cancel</button>
                     </form>
                 </dialog>
@@ -37,23 +36,36 @@
         </div>
     </div>
     <div id="main">
-        <dialog id="dialogContent">
-            <form id="taskContentForm" formmethod="dialog">
-                <input type="text" id="newTaskTitle" placeholder="Title" required>
-                <input type="text" id="newTaskDescription" placeholder="Description" required>
-                <button type="submit">Add Project</button>
-                <button type="button" id="cancelTask">Cancel</button>
-            </form>
-        </dialog>
         <div id="currentProject">
-            <div class="section">
-                <div id="currentProjectTitle">
-                    <b>Home</b>
-                    <button id="addTask">+</button>
-                </div>
-                <div class="taskCard">
-                    <div class="taskTitle"></div>
-                    <div class="taskDescription"></div>
+            <div id="currentProjectTitle">
+                <b>Home</b>
+                <button id="addTask">+</button>
+            </div>
+            <div class="taskSection">
+                <div class="taskCard" data-task-num="0" style="display: none">
+                    <form id="taskCardForm">
+                        <div class="taskTitle">
+                            <input type="text" id="newTaskTitle" placeholder="Title">
+                        </div>
+                        <div class="taskDescription">
+                            <textarea rows="2" id="newTaskDescription" placeholder="Description" style="font-weight: lighter"></textarea>
+                        </div>
+                        <div class="bottomCard">
+                            <div class="dateandpriority">
+                                <div class="taskDate">
+                                    <input type="text" id="newTaskDate" placeholder="No Date">
+                                </div>
+                                <div class="taskPriority">
+                                    <input type="text" id="newTaskPriority" placeholder="No Priority">
+                                </div>
+                            </div>
+                            <div class="icons">
+                                <!-- <button type="button" id="editBtn"><img src="./images/pencil-outline.svg" heigh="25px" width="25px"></button>
+                                <button type="submit" id="saveBtn" form="taskCardForm"><img src="./images/content-save-outline.svg" heigh="25px" width="25px"></button> -->
+                                <button type="button" id="deleteBtn"><img src="de0bb67a90c508546224.svg" heigh="25px" width="25px" onclick="deleteTask(this)"></button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
