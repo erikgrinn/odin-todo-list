@@ -53,11 +53,11 @@ const taskCardTemplate = document.querySelector('.taskCard')
 const addTaskBtn = document.getElementById('addTask')
 
 function addTask(event) {
-        const editBtn = document.getElementById('editBtn')
-        editBtn.style.display = 'none'
+        // const editBtn = document.getElementById('editBtn')
+        // editBtn.style.display = 'none'
 
-        const saveBtn = document.getElementById('saveBtn')
-        saveBtn.style.display = 'block'
+        // const saveBtn = document.getElementById('saveBtn')
+        // saveBtn.style.display = 'block'
 
         let newTask = taskCardTemplate.cloneNode(true) // clone node with children
         newTask.style.display = 'block'
@@ -109,7 +109,7 @@ addTaskBtn.addEventListener('click', () => addTask())
 function setTaskNumProperties(newTask) {
     newTask.setAttribute('data-task-num', taskSection.children.length) // taskCard
     newTask.children[0].setAttribute('id', `A${taskSection.children.length}`) // form id
-    newTask.querySelector('button[type="submit"]').setAttribute('form', `A${taskSection.children.length}`) // submit button tied to form id
+    // newTask.querySelector('button[type="submit"]').setAttribute('form', `A${taskSection.children.length}`) // submit button tied to form id
 }
 
 function editTask(target) {
