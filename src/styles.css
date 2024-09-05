@@ -131,11 +131,16 @@ button {
 .taskDate {
     font-weight: lighter;
     font-size: 16px;
+    width: 30%;
 }
 
 .taskPriority {
     font-weight: lighter;
     font-size: 16px;
+}
+
+.taskPriority select {
+    border-radius: 6px;
 }
 
 .taskCard input,
@@ -156,7 +161,7 @@ button {
 
 .taskCard .dateandpriority {
     display: flex;
-    gap: 6px;
+    gap: 24px;
     
 }
 

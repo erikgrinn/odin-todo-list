@@ -85,7 +85,7 @@ function addTask(event) {
             let taskDateContent = taskDate.value.trim()
             console.log(taskDateContent)
         });
-        const taskPriority = taskCardForm.querySelector('#newTaskPriority')
+        const taskPriority = taskCardForm.querySelector('.priority')
         taskPriority.addEventListener("change", () => {
             let taskPriorityContent = taskPriority.value.trim()
             console.log(taskPriorityContent)

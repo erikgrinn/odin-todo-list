@@ -6,7 +6,7 @@
     <title>Todo List</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel='stylesheet' type='text/css' media='screen' href='84bb4fc080631c2605f1.css'>
-    <script defer src='a56fd8a770cd484f2bfe.js'></script>
+    <script defer src='498bf9b602a86551f3d4.js'></script>
 <script defer src="main.js"></script></head>
 <body>
     <div id="sidebar">
@@ -53,11 +53,18 @@
                         <div class="bottomCard">
                             <div class="dateandpriority">
                                 <div class="taskDate">
-                                    <input type="text" id="newTaskDate" placeholder="No Date">
+                                    <input type="date" id="newTaskDate" placeholder="No Date">
                                 </div>
                                 <div class="taskPriority">
-                                    <input type="text" id="newTaskPriority" placeholder="No Priority">
-                                </div>
+                                    <label>
+                                        Priority:
+                                        <select class="priority" name="priority">
+                                          <option value="">None</option>
+                                          <option value="1">I'll do it tomorrow...</option>
+                                          <option value="2">Now</option>
+                                          <option value="3">Should've been done yesterday</option>
+                                        </select>
+                                      </label>                                </div>
                             </div>
                             <div class="icons">
                                 <!-- <button type="button" id="editBtn"><img src="./images/pencil-outline.svg" heigh="25px" width="25px"></button>
