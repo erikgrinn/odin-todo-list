@@ -27,7 +27,7 @@ button {
 }
 
 #deleteBtn {
-    background-image: url("./images/delete-outline.svg");
+    background-image: url("images/delete-outline.svg");
     height: 25px;
     width: 25px;
 }
