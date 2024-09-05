@@ -7,7 +7,10 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack --config webpack.prod.js",
     "dev": "webpack serve --config webpack.dev.js",
-    "deploy": "git subtree push --prefix dist origin gh-pages"
+    "deploy-gh": "git subtree push --prefix dist origin gh-pages",
+    "commit-dist": "git add --force dist && git commit -m 'Initial dist subtree commit'",
+    "delete-dist": "rm -rf dist",
+    "delete-gh": "git push origin --delete gh-pages"
   },
   "keywords": [],
   "author": "",
