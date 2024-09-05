@@ -137,7 +137,7 @@ function deleteTask(target) {
     for (let i=0; i<taskSection.children.length; i++) {
         taskSection.children[i].setAttribute('data-task-num', i)
         taskSection.children[i].children[0].setAttribute('id', `A${i}`) // form id
-        taskSection.children[i].querySelector('button[type="submit"]').setAttribute('form', `A${i}`) // submit button tied to form id
+        // taskSection.children[i].querySelector('button[type="submit"]').setAttribute('form', `A${i}`) // submit button tied to form id
 
     }
 }
