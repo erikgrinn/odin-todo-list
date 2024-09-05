@@ -26,11 +26,11 @@ button {
     border-color: var(--tertiary-color);
 }
 
-#deleteBtn {
+/* #deleteBtn {
     background-image: url("images/delete-outline.svg");
     height: 25px;
     width: 25px;
-}
+} */
 
 #sidebar {
     background-color: var(--secondary-color);
