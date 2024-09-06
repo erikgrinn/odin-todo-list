@@ -12,8 +12,6 @@ const currentProject = document.getElementById('currentProject')
 function projectKeys(letter) {
     let keys = []
 
-
-    // Iterate over all keys in localStorage
     for (let i = 0; i < localStorage.length; i++) {
         const key = localStorage.key(i);
 
@@ -22,7 +20,6 @@ function projectKeys(letter) {
             keys.push(key)
         }
     }
-
     return {keys};
 }
 
@@ -37,13 +34,12 @@ function loadTasks(currentProject) {
             // Compare the numeric parts
             return numA - numB;
         });
-    
-    
 
     for (let i=0; i<taskIds.length; i++) {
         
         // Retrieve the task data from localStorage
         const storedTaskData = localStorage.getItem(taskIds[i]);
+        console.log(storedTaskData)
     
         // Check if there is any data in localStorage for this task
         if (storedTaskData) {
@@ -110,10 +106,10 @@ function addTask(storedTaskData) {
             const taskData = JSON.parse(storedTaskData);
         
             // Find the form elements
-            const taskTitle = taskCardForm.querySelector('#newTaskTitle');
-            const taskDescription = taskCardForm.querySelector('#newTaskDescription');
-            const taskDate = taskCardForm.querySelector('#newTaskDate');
-            const taskPriority = taskCardForm.querySelector('.priority');
+            const taskTitle = newTask.querySelector('#newTaskTitle');
+            const taskDescription = newTask.querySelector('#newTaskDescription');
+            const taskDate = newTask.querySelector('#newTaskDate');
+            const taskPriority = newTask.querySelector('.priority');
 
             // Populate the form fields with the retrieved data
             taskTitle.value = taskData.taskTitle;
@@ -124,8 +120,6 @@ function addTask(storedTaskData) {
         } else {
             storeTask(newTask)
         }
-
-
     }
 
 addTaskBtn.addEventListener('click', () => addTask())
