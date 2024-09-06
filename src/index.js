@@ -52,12 +52,6 @@ const taskCardTemplate = document.querySelector('.taskCard')
 const addTaskBtn = document.getElementById('addTask')
 
 function addTask(event) {
-        // const editBtn = document.getElementById('editBtn')
-        // editBtn.style.display = 'none'
-
-        // const saveBtn = document.getElementById('saveBtn')
-        // saveBtn.style.display = 'block'
-
         let newTask = taskCardTemplate.cloneNode(true) // clone node with children
         newTask.style.display = 'block'
 
@@ -72,21 +66,16 @@ function addTask(event) {
         //     // saveTask(e.target)
         // })
 
-        // newTask.setAttribute('data-task-title', taskTitle.replace(/\s+/g, '-')) // class names can't have spaces
-
         // saveBtn.addEventListener('click', saveTask)
 
     }
 
 addTaskBtn.addEventListener('click', () => addTask())
 
-function storeTask(newTask) {
-    let newTaskNum = newTask.getAttribute(`data-task-num`)
+function storeTask(task) {
+    let newTaskNum = task.getAttribute(`data-task-num`)
     const taskCardForm = document.querySelector(`form#A${newTaskNum}`);
 
-
-
-    // initial storage
     const taskTitle = taskCardForm.querySelector('#newTaskTitle');
     const taskDescription = taskCardForm.querySelector('#newTaskDescription');
     const taskDate = taskCardForm.querySelector('#newTaskDate');
@@ -101,35 +90,26 @@ function storeTask(newTask) {
 
     // change event listeners
     taskTitle.addEventListener("change", () => {
-        // let taskTitleContent = taskTitle.value.trim();
-        // localStorage.setItem(`${taskCardForm.id}-taskTitle`, taskTitleContent);  // Store task title with form ID
             taskData.taskTitle = taskTitle.value.trim()
             localStorage.setItem(`task-${taskCardForm.id}`, JSON.stringify(taskData));
     });
 
     taskDescription.addEventListener("change", () => {
-    //     let taskDescriptionContent = taskDescription.value.trim();
-    //     localStorage.setItem(`${taskCardForm.id}-taskDescription`, taskDescriptionContent);  // Store task description with form ID
         taskData.taskDescription = taskDescription.value.trim()
         localStorage.setItem(`task-${taskCardForm.id}`, JSON.stringify(taskData));
     });
 
     taskDate.addEventListener("change", () => {
-    //     let taskDateContent = taskDate.value.trim();
-    //     localStorage.setItem(`${taskCardForm.id}-taskDate`, taskDateContent);  // Store task date with form ID
             taskData.taskDate = taskDate.value.trim()
             localStorage.setItem(`task-${taskCardForm.id}`, JSON.stringify(taskData));   
         });
 
     taskPriority.addEventListener("change", () => {
-    //     let taskPriorityContent = taskPriority.value.trim();
-    //     localStorage.setItem(`${taskCardForm.id}-taskPriority`, taskPriorityContent);  // Store task priority with form ID
             taskData.taskPriority = taskPriority.value.trim()
             localStorage.setItem(`task-${taskCardForm.id}`, JSON.stringify(taskData));    
         });
 
     localStorage.setItem(`task-${taskCardForm.id}`, JSON.stringify(taskData));
-
 }
 
 function retrieveTask() {
@@ -190,11 +170,13 @@ function saveTask(target) {
 function deleteTask(target) {
     // remove target task card
     const taskCard = target.closest('.taskCard');
-    for (let key in localStorage) {
-        if (key.substring(0,2) == `${taskCard.id}`) {
-            localStorage.removeItem(key);
-        }
-    }
+
+    const taskId = taskCard.id;  // e.g., taskCardForm.id used in the previous example
+    localStorage.removeItem(`task-${taskId}`);
+    
+    // Optionally, remove the task card from the DOM
+    taskCard.remove();
+
     taskCard.remove();
     console.log(taskCard.id)
 
@@ -207,8 +189,6 @@ function deleteTask(target) {
         saveTask(taskSection.children[i])
 
     }
-
-
 }
 
 function clearStorage() {
