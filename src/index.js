@@ -11,6 +11,7 @@ const addProjectBtn = document.getElementById('addProject')
 const dialogTitle = document.querySelector('#dialogTitle')
 const projectTitleForm = document.getElementById('projectTitleForm')
 const currentProject = document.getElementById('currentProject')
+currentProject.setAttribute('data-storage-letter', 'A')
 
 // main/tasks
 const taskSection = currentProject.children[1]
@@ -70,10 +71,10 @@ function addProjectTitle(event) {
             newProj.textContent = projTitle
             newProj.setAttribute('class', projTitle.replace(/\s+/g, '-')) // class names can't have spaces
             newProj.setAttribute('data-storage-letter', String.fromCharCode(65 + (projectTitles.childElementCount-1))) // ASCII char for uppercase, starting at B
-            console.log(newProj)
             projectTitles.appendChild(newProj)
 
             currentProject.children[0].querySelector('b').textContent = projTitle
+            currentProject.setAttribute('data-storage-letter', newProj.getAttribute('data-storage-letter'))
 
             // remove all tasks except first hidden empty taskCard
             if (currentProject.children[1].children[1]) {
@@ -81,6 +82,8 @@ function addProjectTitle(event) {
                     currentProject.children[1].children[i].remove()
                 }
             }
+
+            //need to reload saved tasks, but probably not here
         }
         projectTitleForm.reset()
         dialogTitle.close();
@@ -101,6 +104,7 @@ function addTask(storedTaskData) {
 
         setTaskNumProperties(newTask)
         taskSection.appendChild(newTask)
+        
         // if taskData passed from loadTasks()
         if (storedTaskData) {
             const taskData = JSON.parse(storedTaskData);
@@ -126,7 +130,7 @@ addTaskBtn.addEventListener('click', () => addTask())
 
 function storeTask(task) {
     let newTaskNum = task.getAttribute(`data-task-num`)
-    const taskCardForm = document.querySelector(`form#A${newTaskNum}`);
+    const taskCardForm = document.querySelector(`form#${currentProject.getAttribute('data-storage-letter')}${newTaskNum}`);
 
     const taskTitle = taskCardForm.querySelector('#newTaskTitle');
     const taskDescription = taskCardForm.querySelector('#newTaskDescription');
@@ -166,7 +170,7 @@ function storeTask(task) {
 
 function setTaskNumProperties(newTask) {
     newTask.setAttribute('data-task-num', taskSection.children.length) // taskCard
-    newTask.children[0].setAttribute('id', `A${taskSection.children.length}`) // form id
+    newTask.children[0].setAttribute('id', `${currentProject.getAttribute('data-storage-letter')}${taskSection.children.length}`) // form id
     // newTask.querySelector('button[type="submit"]').setAttribute('form', `A${taskSection.children.length}`) // submit button tied to form id
 }
 
@@ -214,6 +218,7 @@ function deleteTask(target) {
     }
 }
 
-// localStorage.clear()
+localStorage.clear()
 loadTasks(currentProject)
 window.deleteTask = deleteTask; // using onclick in html
+
