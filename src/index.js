@@ -18,14 +18,14 @@ const taskSection = currentProject.children[1]
 const taskCardTemplate = document.querySelector('.taskCard')
 const addTaskBtn = document.getElementById('addTask')
 
-function projectKeys(letter) {
+function projectKeys(currentProject) {
     let keys = []
 
     for (let i = 0; i < localStorage.length; i++) {
         const key = localStorage.key(i);
 
         // Check if the key starts with the specified letter or string
-        if (key.startsWith(letter)) {
+        if (key.startsWith(`${currentProject.getAttribute('data-storage-letter')}`)) {
             keys.push(key)
         }
     }
@@ -34,10 +34,10 @@ function projectKeys(letter) {
 
 function loadTasks(currentProject) {
 
-    const taskIds = projectKeys('A').keys
+    const taskIds = projectKeys(currentProject).keys // double check currentProject here is correctly referenced?
         taskIds.sort((a, b) => {
             // Extract the numeric part of both strings
-            const numA = parseInt(a.match(/\d+/)[0], 10);  // Extract the number from 'A1', 'A3', etc.
+            const numA = parseInt(a.match(/\d+/)[0], 10); 
             const numB = parseInt(b.match(/\d+/)[0], 10);
         
             // Compare the numeric parts
@@ -205,7 +205,7 @@ function deleteTask(target) {
     // remove what was the last task card from localStorage
     const letterPart = taskId.match(/[a-zA-Z]+/)[0]; // Extract the letter(s)
     const numberPart = taskSection.childElementCount
-    const lastTaskId = `${letterPart}${numberPart}`; // Combine letter and incremented number
+    const lastTaskId = `${letterPart}${numberPart}`; 
 
     localStorage.removeItem(`${lastTaskId}`)
 
@@ -218,7 +218,7 @@ function deleteTask(target) {
     }
 }
 
-localStorage.clear()
+// localStorage.clear()
 loadTasks(currentProject)
 window.deleteTask = deleteTask; // using onclick in html
 
