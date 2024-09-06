@@ -9,6 +9,67 @@ const dialogTitle = document.querySelector('#dialogTitle')
 const projectTitleForm = document.getElementById('projectTitleForm')
 const currentProject = document.getElementById('currentProject')
 
+function projectKeys(letter) {
+    let keys = []
+
+
+    // Iterate over all keys in localStorage
+    for (let i = 0; i < localStorage.length; i++) {
+        const key = localStorage.key(i);
+
+        // Check if the key starts with the specified letter or string
+        if (key.startsWith(letter)) {
+            keys.push(key)
+        }
+    }
+
+    return {keys};
+}
+
+function loadTasks(currentProject) {
+
+    const taskIds = projectKeys('A').keys
+        taskIds.sort((a, b) => {
+            // Extract the numeric part of both strings
+            const numA = parseInt(a.match(/\d+/)[0], 10);  // Extract the number from 'A1', 'A3', etc.
+            const numB = parseInt(b.match(/\d+/)[0], 10);
+        
+            // Compare the numeric parts
+            return numA - numB;
+        });
+    
+
+    for (let i=0; i<taskIds.length; i++) {
+        
+        // Retrieve the task data from localStorage
+        const storedTaskData = localStorage.getItem(taskIds[i]);
+    
+        // Check if there is any data in localStorage for this task
+        if (storedTaskData) {
+            // Parse the JSON string back into an object
+            const taskData = JSON.parse(storedTaskData);
+    
+            // Find the form elements
+            const taskTitle = taskCardForm.querySelector('#newTaskTitle');
+            const taskDescription = taskCardForm.querySelector('#newTaskDescription');
+            const taskDate = taskCardForm.querySelector('#newTaskDate');
+            const taskPriority = taskCardForm.querySelector('.priority');
+    
+            // Populate the form fields with the retrieved data
+            taskTitle.value = taskData.taskTitle;
+            taskDescription.value = taskData.taskDescription;
+            taskDate.value = taskData.taskDate;
+            taskPriority.value = taskData.taskPriority;
+        } else {
+            console.log("No task found in localStorage for this ID");
+        }
+    }
+}
+
+loadTasks(currentProject)
+
+
+
 function addProjectTitle(event) {
     dialogTitle.showModal()
 
@@ -177,7 +238,7 @@ function clearStorage() {
     localStorage.clear()
 }
 
-clearStorage()
+// clearStorage()
 
 // global scope due to webpack (could try making new module and importing)
 // window.editTask = editTask;
