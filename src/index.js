@@ -38,6 +38,7 @@ function loadTasks(currentProject) {
             return numA - numB;
         });
     
+    
 
     for (let i=0; i<taskIds.length; i++) {
         
@@ -46,28 +47,14 @@ function loadTasks(currentProject) {
     
         // Check if there is any data in localStorage for this task
         if (storedTaskData) {
-            // Parse the JSON string back into an object
-            const taskData = JSON.parse(storedTaskData);
-    
-            // Find the form elements
-            const taskTitle = taskCardForm.querySelector('#newTaskTitle');
-            const taskDescription = taskCardForm.querySelector('#newTaskDescription');
-            const taskDate = taskCardForm.querySelector('#newTaskDate');
-            const taskPriority = taskCardForm.querySelector('.priority');
-    
-            // Populate the form fields with the retrieved data
-            taskTitle.value = taskData.taskTitle;
-            taskDescription.value = taskData.taskDescription;
-            taskDate.value = taskData.taskDate;
-            taskPriority.value = taskData.taskPriority;
+
+            addTask(storedTaskData)
+           
         } else {
             console.log("No task found in localStorage for this ID");
         }
     }
 }
-
-loadTasks(currentProject)
-
 
 
 function addProjectTitle(event) {
@@ -112,22 +99,32 @@ const taskSection = currentProject.children[1]
 const taskCardTemplate = document.querySelector('.taskCard')
 const addTaskBtn = document.getElementById('addTask')
 
-function addTask(event) {
+function addTask(storedTaskData) {
         let newTask = taskCardTemplate.cloneNode(true) // clone node with children
         newTask.style.display = 'block'
 
         setTaskNumProperties(newTask)
         taskSection.appendChild(newTask)
 
-        storeTask(newTask)
+        if (storedTaskData) {
+            const taskData = JSON.parse(storedTaskData);
+        
+            // Find the form elements
+            const taskTitle = taskCardForm.querySelector('#newTaskTitle');
+            const taskDescription = taskCardForm.querySelector('#newTaskDescription');
+            const taskDate = taskCardForm.querySelector('#newTaskDate');
+            const taskPriority = taskCardForm.querySelector('.priority');
 
-        // taskCardForm.addEventListener('submit', function(e) {
-        //     e.preventDefault();
-        //     // console.log(e.target)
-        //     // saveTask(e.target)
-        // })
+            // Populate the form fields with the retrieved data
+            taskTitle.value = taskData.taskTitle;
+            taskDescription.value = taskData.taskDescription;
+            taskDate.value = taskData.taskDate;
+            taskPriority.value = taskData.taskPriority;
+            storeTask(newTask)
+        } else {
+            storeTask(newTask)
+        }
 
-        // saveBtn.addEventListener('click', saveTask)
 
     }
 
@@ -173,9 +170,6 @@ function storeTask(task) {
     localStorage.setItem(`${taskCardForm.id}`, JSON.stringify(taskData));
 }
 
-// function retrieveTask() {  
-
-// }
 
 function setTaskNumProperties(newTask) {
     newTask.setAttribute('data-task-num', taskSection.children.length) // taskCard
@@ -239,7 +233,7 @@ function clearStorage() {
 }
 
 // clearStorage()
-
+loadTasks(currentProject)
 // global scope due to webpack (could try making new module and importing)
 // window.editTask = editTask;
 window.saveTask = saveTask;
