@@ -169,9 +169,11 @@ function saveTask(target) {
 
 function deleteTask(target) {
     // remove target task card
-    const taskCard = target.closest('.taskCard');
+    const taskCard = target.closest('.taskCard')
+    const taskCardForm = target.closest('form');
 
-    const taskId = taskCard.id;  // e.g., taskCardForm.id used in the previous example
+    const taskId = taskCardForm.id;  // 
+    console.log(taskCardForm.id)
     localStorage.removeItem(`task-${taskId}`);
     
     // Optionally, remove the task card from the DOM
@@ -181,7 +183,7 @@ function deleteTask(target) {
     console.log(taskCard.id)
 
     // reassign task-nums
-    for (let i=0; i<taskSection.children.length; i++) {
+    for (let i=1; i<taskSection.children.length; i++) {
         // setTaskNumProperties(taskSection.children[i])
         taskSection.children[i].setAttribute('data-task-num', i)
         taskSection.children[i].children[0].setAttribute('id', `A${i}`) // form id
@@ -195,7 +197,7 @@ function clearStorage() {
     localStorage.clear()
 }
 
-// clearStorage()
+clearStorage()
 
 // global scope due to webpack (could try making new module and importing)
 // window.editTask = editTask;
