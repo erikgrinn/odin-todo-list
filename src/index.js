@@ -172,15 +172,17 @@ function deleteTask(target) {
     const taskCard = target.closest('.taskCard')
     const taskCardForm = target.closest('form');
 
-    const taskId = taskCardForm.id;  // 
-    console.log(taskCardForm.id)
+    const taskId = taskCardForm.id; 
     localStorage.removeItem(`task-${taskId}`);
-    
-    // Optionally, remove the task card from the DOM
     taskCard.remove();
 
-    taskCard.remove();
-    console.log(taskCard.id)
+    // remove what was the last task card from localStorage
+    const letterPart = taskId.match(/[a-zA-Z]+/)[0]; // Extract the letter(s)
+    const numberPart = taskSection.childElementCount
+    const lastTaskId = `${letterPart}${numberPart}`; // Combine letter and incremented number
+
+    localStorage.removeItem(`task-${lastTaskId}`)
+
 
     // reassign task-nums
     for (let i=1; i<taskSection.children.length; i++) {
