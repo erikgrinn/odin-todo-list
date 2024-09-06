@@ -8,7 +8,6 @@ const addProjectBtn = document.getElementById('addProject')
 const dialogTitle = document.querySelector('#dialogTitle')
 const projectTitleForm = document.getElementById('projectTitleForm')
 const currentProject = document.getElementById('currentProject')
-// const projectsCount = projectTitles.children.array.splice(1)
 
 function addProjectTitle(event) {
     dialogTitle.showModal()
@@ -73,9 +72,6 @@ function addTask(event) {
         //     // saveTask(e.target)
         // })
 
-
-
-
         // newTask.setAttribute('data-task-title', taskTitle.replace(/\s+/g, '-')) // class names can't have spaces
 
         // saveBtn.addEventListener('click', saveTask)
@@ -85,50 +81,34 @@ function addTask(event) {
 addTaskBtn.addEventListener('click', () => addTask())
 
 function storeTask(newTask) {
-    console.log(newTask)
     let newTaskNum = newTask.getAttribute(`data-task-num`)
     const taskCardForm = document.querySelector(`form#A${newTaskNum}`);
 
     // initial storage
     const taskTitle = taskCardForm.querySelector('#newTaskTitle');
-    let taskTitleContent = taskTitle.value.trim();
-    localStorage.setItem(`${taskCardForm.id}-taskTitle`, taskTitleContent);  // Store task title with form ID
-
     const taskDescription = taskCardForm.querySelector('#newTaskDescription');
-    let taskDescriptionContent = taskDescription.value.trim();
-    localStorage.setItem(`${taskCardForm.id}-taskDescription`, taskDescriptionContent);  // Store task description with form ID
-    
     const taskDate = taskCardForm.querySelector('#newTaskDate');
-    let taskDateContent = taskDate.value.trim();
-    localStorage.setItem(`${taskCardForm.id}-taskDate`, taskDateContent);  // Store task date with form ID
-
     const taskPriority = taskCardForm.querySelector('.priority');
-    let taskPriorityContent = taskPriority.value.trim();
-    localStorage.setItem(`${taskCardForm.id}-taskPriority`, taskPriorityContent);  // Store task priority with form ID
 
     // change event listeners
-    // const taskTitle = taskCardForm.querySelector('#newTaskTitle');
     taskTitle.addEventListener("change", () => {
         let taskTitleContent = taskTitle.value.trim();
         localStorage.setItem(`${taskCardForm.id}-taskTitle`, taskTitleContent);  // Store task title with form ID
         console.log(taskTitleContent, taskCardForm.id);
     });
 
-    // const taskDescription = taskCardForm.querySelector('#newTaskDescription');
     taskDescription.addEventListener("change", () => {
         let taskDescriptionContent = taskDescription.value.trim();
         localStorage.setItem(`${taskCardForm.id}-taskDescription`, taskDescriptionContent);  // Store task description with form ID
         console.log(taskDescriptionContent);
     });
 
-    // const taskDate = taskCardForm.querySelector('#newTaskDate');
     taskDate.addEventListener("change", () => {
         let taskDateContent = taskDate.value.trim();
         localStorage.setItem(`${taskCardForm.id}-taskDate`, taskDateContent);  // Store task date with form ID
         console.log(taskDateContent);
     });
 
-    // const taskPriority = taskCardForm.querySelector('.priority');
     taskPriority.addEventListener("change", () => {
         let taskPriorityContent = taskPriority.value.trim();
         localStorage.setItem(`${taskCardForm.id}-taskPriority`, taskPriorityContent);  // Store task priority with form ID
@@ -168,9 +148,9 @@ function setTaskNumProperties(newTask) {
     // newTask.querySelector('button[type="submit"]').setAttribute('form', `A${taskSection.children.length}`) // submit button tied to form id
 }
 
-function editTask(target) {
-    const taskCard = target.closest('.taskCard');
-}
+// function editTask(target) {
+//     const taskCard = target.closest('.taskCard');
+// }
 
 function saveTask(target) {
     // const taskTitle = target.querySelector('#newTaskTitle')
@@ -186,7 +166,6 @@ function saveTask(target) {
     let newTaskNum = target.getAttribute(`data-task-num`)
     const taskCardForm = document.querySelector(`form#A${newTaskNum}`);
 
-    // initial storage
     const taskTitle = taskCardForm.querySelector('#newTaskTitle');
     let taskTitleContent = taskTitle.value.trim();
     localStorage.setItem(`${taskCardForm.id}-taskTitle`, taskTitleContent);  // Store task title with form ID
@@ -209,6 +188,7 @@ function deleteTask(target) {
     // remove target task card
     const taskCard = target.closest('.taskCard');
     taskCard.remove();
+    localStorage.removeItem()
 
     // reassign task-nums
     for (let i=0; i<taskSection.children.length; i++) {
@@ -222,6 +202,6 @@ function deleteTask(target) {
 }
 
 // global scope due to webpack (could try making new module and importing)
-window.editTask = editTask;
+// window.editTask = editTask;
 window.saveTask = saveTask;
 window.deleteTask = deleteTask; 
