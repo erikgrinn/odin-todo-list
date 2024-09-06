@@ -84,36 +84,52 @@ function storeTask(newTask) {
     let newTaskNum = newTask.getAttribute(`data-task-num`)
     const taskCardForm = document.querySelector(`form#A${newTaskNum}`);
 
+
+
     // initial storage
     const taskTitle = taskCardForm.querySelector('#newTaskTitle');
     const taskDescription = taskCardForm.querySelector('#newTaskDescription');
     const taskDate = taskCardForm.querySelector('#newTaskDate');
     const taskPriority = taskCardForm.querySelector('.priority');
 
+    let taskData = {
+        taskTitle: taskTitle.value.trim(),
+        taskDescription: taskDescription.value.trim(),
+        taskDate: taskDate.value.trim(),
+        taskPriority: taskPriority.value.trim()
+    };
+
     // change event listeners
     taskTitle.addEventListener("change", () => {
-        let taskTitleContent = taskTitle.value.trim();
-        localStorage.setItem(`${taskCardForm.id}-taskTitle`, taskTitleContent);  // Store task title with form ID
-        console.log(taskTitleContent, taskCardForm.id);
+        // let taskTitleContent = taskTitle.value.trim();
+        // localStorage.setItem(`${taskCardForm.id}-taskTitle`, taskTitleContent);  // Store task title with form ID
+            taskData.taskTitle = taskTitle.value.trim()
+            localStorage.setItem(`task-${taskCardForm.id}`, JSON.stringify(taskData));
     });
 
     taskDescription.addEventListener("change", () => {
-        let taskDescriptionContent = taskDescription.value.trim();
-        localStorage.setItem(`${taskCardForm.id}-taskDescription`, taskDescriptionContent);  // Store task description with form ID
-        console.log(taskDescriptionContent);
+    //     let taskDescriptionContent = taskDescription.value.trim();
+    //     localStorage.setItem(`${taskCardForm.id}-taskDescription`, taskDescriptionContent);  // Store task description with form ID
+        taskData.taskDescription = taskDescription.value.trim()
+        localStorage.setItem(`task-${taskCardForm.id}`, JSON.stringify(taskData));
     });
 
     taskDate.addEventListener("change", () => {
-        let taskDateContent = taskDate.value.trim();
-        localStorage.setItem(`${taskCardForm.id}-taskDate`, taskDateContent);  // Store task date with form ID
-        console.log(taskDateContent);
-    });
+    //     let taskDateContent = taskDate.value.trim();
+    //     localStorage.setItem(`${taskCardForm.id}-taskDate`, taskDateContent);  // Store task date with form ID
+            taskData.taskDate = taskDate.value.trim()
+            localStorage.setItem(`task-${taskCardForm.id}`, JSON.stringify(taskData));   
+        });
 
     taskPriority.addEventListener("change", () => {
-        let taskPriorityContent = taskPriority.value.trim();
-        localStorage.setItem(`${taskCardForm.id}-taskPriority`, taskPriorityContent);  // Store task priority with form ID
-        console.log(taskPriorityContent);
-    });
+    //     let taskPriorityContent = taskPriority.value.trim();
+    //     localStorage.setItem(`${taskCardForm.id}-taskPriority`, taskPriorityContent);  // Store task priority with form ID
+            taskData.taskPriority = taskPriority.value.trim()
+            localStorage.setItem(`task-${taskCardForm.id}`, JSON.stringify(taskData));    
+        });
+
+    localStorage.setItem(`task-${taskCardForm.id}`, JSON.stringify(taskData));
+
 }
 
 function retrieveTask() {
@@ -153,47 +169,34 @@ function setTaskNumProperties(newTask) {
 // }
 
 function saveTask(target) {
-    // const taskTitle = target.querySelector('#newTaskTitle')
-    // taskTitle.addEventListener("change", () => {
-    //     let taskTitleContent = taskTitle.value.trim()
-    //     console.log(taskTitleContent)
-    // });
-    // const taskDescription = target.querySelector('#newTaskDescription').value.trim()
-    // const taskDate = target.querySelector('#newTaskDate').value.trim()
-    // const taskPriority = target.querySelector('#newTaskPriority').value.trim()
-    // console.log(taskTitle,taskDescription,taskDate,taskPriority)
-
     let newTaskNum = target.getAttribute(`data-task-num`)
     const taskCardForm = document.querySelector(`form#A${newTaskNum}`);
 
     const taskTitle = taskCardForm.querySelector('#newTaskTitle');
-    let taskTitleContent = taskTitle.value.trim();
-    localStorage.setItem(`${taskCardForm.id}-taskTitle`, taskTitleContent);  // Store task title with form ID
-
     const taskDescription = taskCardForm.querySelector('#newTaskDescription');
-    let taskDescriptionContent = taskDescription.value.trim();
-    localStorage.setItem(`${taskCardForm.id}-taskDescription`, taskDescriptionContent);  // Store task description with form ID
-    
     const taskDate = taskCardForm.querySelector('#newTaskDate');
-    let taskDateContent = taskDate.value.trim();
-    localStorage.setItem(`${taskCardForm.id}-taskDate`, taskDateContent);  // Store task date with form ID
-
     const taskPriority = taskCardForm.querySelector('.priority');
-    let taskPriorityContent = taskPriority.value.trim();
-    localStorage.setItem(`${taskCardForm.id}-taskPriority`, taskPriorityContent);  // Store task priority with form ID
 
+    let taskData = {
+        taskTitle: taskTitle.value.trim(),
+        taskDescription: taskDescription.value.trim(),
+        taskDate: taskDate.value.trim(),
+        taskPriority: taskPriority.value.trim()
+    };
+
+    localStorage.setItem(`task-${taskCardForm.id}`, JSON.stringify(taskData));
 }
 
 function deleteTask(target) {
     // remove target task card
     const taskCard = target.closest('.taskCard');
-    taskCard.remove();
-    // let key = taskCard.id
     for (let key in localStorage) {
         if (key.substring(0,2) == `${taskCard.id}`) {
             localStorage.removeItem(key);
         }
     }
+    taskCard.remove();
+    console.log(taskCard.id)
 
     // reassign task-nums
     for (let i=0; i<taskSection.children.length; i++) {
@@ -204,7 +207,15 @@ function deleteTask(target) {
         saveTask(taskSection.children[i])
 
     }
+
+
 }
+
+function clearStorage() {
+    localStorage.clear()
+}
+
+// clearStorage()
 
 // global scope due to webpack (could try making new module and importing)
 // window.editTask = editTask;
