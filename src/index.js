@@ -65,36 +65,39 @@ function addTask(event) {
         setTaskNumProperties(newTask)
         taskSection.appendChild(newTask)
 
-        let newTaskNum = newTask.getAttribute(`data-task-num`)
-        const taskCardForm = document.querySelector(`form#A${newTaskNum}`);
+        storeTask(newTask)
 
-        // change event listeners
-        const taskTitle = taskCardForm.querySelector('#newTaskTitle')
-        taskTitle.addEventListener("change", () => {
-            let taskTitleContent = taskTitle.value.trim()
-            console.log(taskTitleContent)
-        });
+        // let newTaskNum = newTask.getAttribute(`data-task-num`)
+        // const taskCardForm = document.querySelector(`form#A${newTaskNum}`);
 
-        const taskDescription = taskCardForm.querySelector('#newTaskDescription')
-        taskDescription.addEventListener("change", () => {
-            let taskDescriptionContent = taskDescription.value.trim()
-            console.log(taskDescriptionContent)
-        });
-        const taskDate = taskCardForm.querySelector('#newTaskDate')
-        taskDate.addEventListener("change", () => {
-            let taskDateContent = taskDate.value.trim()
-            console.log(taskDateContent)
-        });
-        const taskPriority = taskCardForm.querySelector('.priority')
-        taskPriority.addEventListener("change", () => {
-            let taskPriorityContent = taskPriority.value.trim()
-            console.log(taskPriorityContent)
-        });
-        taskCardForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            // console.log(e.target)
-            // saveTask(e.target)
-        })
+        // // change event listeners
+        // const taskTitle = taskCardForm.querySelector('#newTaskTitle')
+        // taskTitle.addEventListener("change", () => {
+        //     let taskTitleContent = taskTitle.value.trim()
+        //     console.log(taskTitleContent, taskCardForm.id)
+        // });
+
+        // const taskDescription = taskCardForm.querySelector('#newTaskDescription')
+        // taskDescription.addEventListener("change", () => {
+        //     let taskDescriptionContent = taskDescription.value.trim()
+        //     console.log(taskDescriptionContent)
+        // });
+        // const taskDate = taskCardForm.querySelector('#newTaskDate')
+        // taskDate.addEventListener("change", () => {
+        //     let taskDateContent = taskDate.value.trim()
+        //     console.log(taskDateContent)
+        // });
+        // const taskPriority = taskCardForm.querySelector('.priority')
+        // taskPriority.addEventListener("change", () => {
+        //     let taskPriorityContent = taskPriority.value.trim()
+        //     console.log(taskPriorityContent)
+        // });
+        // taskCardForm.addEventListener('submit', function(e) {
+        //     e.preventDefault();
+        //     // console.log(e.target)
+        //     // saveTask(e.target)
+        // })
+
 
 
 
@@ -105,6 +108,66 @@ function addTask(event) {
     }
 
 addTaskBtn.addEventListener('click', () => addTask())
+
+function storeTask(newTask) {
+    let newTaskNum = newTask.getAttribute(`data-task-num`)
+    const taskCardForm = document.querySelector(`form#A${newTaskNum}`);
+
+    // change event listeners
+    const taskTitle = taskCardForm.querySelector('#newTaskTitle');
+    taskTitle.addEventListener("change", () => {
+        let taskTitleContent = taskTitle.value.trim();
+        localStorage.setItem(`${taskCardForm.id}-taskTitle`, taskTitleContent);  // Store task title with form ID
+        console.log(taskTitleContent, taskCardForm.id);
+    });
+
+    const taskDescription = taskCardForm.querySelector('#newTaskDescription');
+    taskDescription.addEventListener("change", () => {
+        let taskDescriptionContent = taskDescription.value.trim();
+        localStorage.setItem(`${taskCardForm.id}-taskDescription`, taskDescriptionContent);  // Store task description with form ID
+        console.log(taskDescriptionContent);
+    });
+
+    const taskDate = taskCardForm.querySelector('#newTaskDate');
+    taskDate.addEventListener("change", () => {
+        let taskDateContent = taskDate.value.trim();
+        localStorage.setItem(`${taskCardForm.id}-taskDate`, taskDateContent);  // Store task date with form ID
+        console.log(taskDateContent);
+    });
+
+    const taskPriority = taskCardForm.querySelector('.priority');
+    taskPriority.addEventListener("change", () => {
+        let taskPriorityContent = taskPriority.value.trim();
+        localStorage.setItem(`${taskCardForm.id}-taskPriority`, taskPriorityContent);  // Store task priority with form ID
+        console.log(taskPriorityContent);
+    });
+}
+
+function retreiveTask() {
+    document.addEventListener('DOMContentLoaded', () => {
+        const taskFormId = taskCardForm.id;  // Get the form's unique ID
+        
+        // Retrieve and set the task title from localStorage using the form ID
+        if (localStorage.getItem(`${taskFormId}-taskTitle`)) {
+            taskTitle.value = localStorage.getItem(`${taskFormId}-taskTitle`);
+        }
+    
+        // Retrieve and set the task description from localStorage using the form ID
+        if (localStorage.getItem(`${taskFormId}-taskDescription`)) {
+            taskDescription.value = localStorage.getItem(`${taskFormId}-taskDescription`);
+        }
+    
+        // Retrieve and set the task date from localStorage using the form ID
+        if (localStorage.getItem(`${taskFormId}-taskDate`)) {
+            taskDate.value = localStorage.getItem(`${taskFormId}-taskDate`);
+        }
+    
+        // Retrieve and set the task priority from localStorage using the form ID
+        if (localStorage.getItem(`${taskFormId}-taskPriority`)) {
+            taskPriority.value = localStorage.getItem(`${taskFormId}-taskPriority`);
+        }
+    });
+}
 
 function setTaskNumProperties(newTask) {
     newTask.setAttribute('data-task-num', taskSection.children.length) // taskCard
@@ -135,6 +198,7 @@ function deleteTask(target) {
 
     // reassign task-nums
     for (let i=0; i<taskSection.children.length; i++) {
+        // setTaskNumProperties(taskSection.children[i])
         taskSection.children[i].setAttribute('data-task-num', i)
         taskSection.children[i].children[0].setAttribute('id', `A${i}`) // form id
         // taskSection.children[i].querySelector('button[type="submit"]').setAttribute('form', `A${i}`) // submit button tied to form id
