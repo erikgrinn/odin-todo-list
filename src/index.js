@@ -1,6 +1,9 @@
 import "./styles.css";
 // import "./retrieve.js";
 
+// global constants
+
+
 // sidebar
 const projectTitles = document.getElementById('projectTitles')
 const projectTemplate = document.createElement('button')
@@ -8,6 +11,11 @@ const addProjectBtn = document.getElementById('addProject')
 const dialogTitle = document.querySelector('#dialogTitle')
 const projectTitleForm = document.getElementById('projectTitleForm')
 const currentProject = document.getElementById('currentProject')
+
+// main/tasks
+const taskSection = currentProject.children[1]
+const taskCardTemplate = document.querySelector('.taskCard')
+const addTaskBtn = document.getElementById('addTask')
 
 function projectKeys(letter) {
     let keys = []
@@ -39,19 +47,15 @@ function loadTasks(currentProject) {
         
         // Retrieve the task data from localStorage
         const storedTaskData = localStorage.getItem(taskIds[i]);
-        console.log(storedTaskData)
     
         // Check if there is any data in localStorage for this task
         if (storedTaskData) {
-
             addTask(storedTaskData)
-           
         } else {
             console.log("No task found in localStorage for this ID");
         }
     }
 }
-
 
 function addProjectTitle(event) {
     dialogTitle.showModal()
@@ -65,6 +69,8 @@ function addProjectTitle(event) {
             let newProj = projectTemplate.cloneNode()
             newProj.textContent = projTitle
             newProj.setAttribute('class', projTitle.replace(/\s+/g, '-')) // class names can't have spaces
+            newProj.setAttribute('data-storage-letter', String.fromCharCode(65 + (projectTitles.childElementCount-1))) // ASCII char for uppercase, starting at B
+            console.log(newProj)
             projectTitles.appendChild(newProj)
 
             currentProject.children[0].querySelector('b').textContent = projTitle
@@ -76,7 +82,6 @@ function addProjectTitle(event) {
                 }
             }
         }
-
         projectTitleForm.reset()
         dialogTitle.close();
     })
@@ -90,18 +95,13 @@ function addProjectTitle(event) {
 
 addProjectBtn.addEventListener('click', () => addProjectTitle())
 
-// main/tasks
-const taskSection = currentProject.children[1]
-const taskCardTemplate = document.querySelector('.taskCard')
-const addTaskBtn = document.getElementById('addTask')
-
 function addTask(storedTaskData) {
         let newTask = taskCardTemplate.cloneNode(true) // clone node with children
         newTask.style.display = 'block'
 
         setTaskNumProperties(newTask)
         taskSection.appendChild(newTask)
-
+        // if taskData passed from loadTasks()
         if (storedTaskData) {
             const taskData = JSON.parse(storedTaskData);
         
@@ -164,16 +164,11 @@ function storeTask(task) {
     localStorage.setItem(`${taskCardForm.id}`, JSON.stringify(taskData));
 }
 
-
 function setTaskNumProperties(newTask) {
     newTask.setAttribute('data-task-num', taskSection.children.length) // taskCard
     newTask.children[0].setAttribute('id', `A${taskSection.children.length}`) // form id
     // newTask.querySelector('button[type="submit"]').setAttribute('form', `A${taskSection.children.length}`) // submit button tied to form id
 }
-
-// function editTask(target) {
-//     const taskCard = target.closest('.taskCard');
-// }
 
 function saveTask(target) {
     let newTaskNum = target.getAttribute(`data-task-num`)
@@ -210,25 +205,15 @@ function deleteTask(target) {
 
     localStorage.removeItem(`${lastTaskId}`)
 
-
     // reassign task-nums
     for (let i=1; i<taskSection.children.length; i++) {
-        // setTaskNumProperties(taskSection.children[i])
         taskSection.children[i].setAttribute('data-task-num', i)
         taskSection.children[i].children[0].setAttribute('id', `A${i}`) // form id
         // taskSection.children[i].querySelector('button[type="submit"]').setAttribute('form', `A${i}`) // submit button tied to form id
         saveTask(taskSection.children[i])
-
     }
 }
 
-function clearStorage() {
-    localStorage.clear()
-}
-
-// clearStorage()
+// localStorage.clear()
 loadTasks(currentProject)
-// global scope due to webpack (could try making new module and importing)
-// window.editTask = editTask;
-window.saveTask = saveTask;
-window.deleteTask = deleteTask; 
+window.deleteTask = deleteTask; // using onclick in html
