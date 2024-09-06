@@ -1,5 +1,5 @@
 import "./styles.css";
-// import {storageAvailable} from "./storage.js";
+// import "./retrieve.js";
 
 // sidebar
 const projectTitles = document.getElementById('projectTitles')
@@ -17,7 +17,7 @@ function addProjectTitle(event) {
     
         const projTitle = document.getElementById('newTitle').value.trim();
 
-        if (projTitle) { //needed to prevent empty buttons being added
+        if (projTitle) { // needed to prevent empty buttons being added
             let newProj = projectTemplate.cloneNode()
             newProj.textContent = projTitle
             newProj.setAttribute('class', projTitle.replace(/\s+/g, '-')) // class names can't have spaces
@@ -91,52 +91,30 @@ function storeTask(task) {
     // change event listeners
     taskTitle.addEventListener("change", () => {
             taskData.taskTitle = taskTitle.value.trim()
-            localStorage.setItem(`task-${taskCardForm.id}`, JSON.stringify(taskData));
+            localStorage.setItem(`${taskCardForm.id}`, JSON.stringify(taskData));
     });
 
     taskDescription.addEventListener("change", () => {
         taskData.taskDescription = taskDescription.value.trim()
-        localStorage.setItem(`task-${taskCardForm.id}`, JSON.stringify(taskData));
+        localStorage.setItem(`${taskCardForm.id}`, JSON.stringify(taskData));
     });
 
     taskDate.addEventListener("change", () => {
             taskData.taskDate = taskDate.value.trim()
-            localStorage.setItem(`task-${taskCardForm.id}`, JSON.stringify(taskData));   
+            localStorage.setItem(`${taskCardForm.id}`, JSON.stringify(taskData));   
         });
 
     taskPriority.addEventListener("change", () => {
             taskData.taskPriority = taskPriority.value.trim()
-            localStorage.setItem(`task-${taskCardForm.id}`, JSON.stringify(taskData));    
+            localStorage.setItem(`${taskCardForm.id}`, JSON.stringify(taskData));    
         });
 
-    localStorage.setItem(`task-${taskCardForm.id}`, JSON.stringify(taskData));
+    localStorage.setItem(`${taskCardForm.id}`, JSON.stringify(taskData));
 }
 
-function retrieveTask() {
-    document.addEventListener('DOMContentLoaded', () => {
-        const taskFormId = taskCardForm.id;  // Get the form's unique ID
-        
-        // Retrieve and set the task title from localStorage using the form ID
-        if (localStorage.getItem(`${taskFormId}-taskTitle`)) {
-            taskTitle.value = localStorage.getItem(`${taskFormId}-taskTitle`);
-        }
-    
-        // Retrieve and set the task description from localStorage using the form ID
-        if (localStorage.getItem(`${taskFormId}-taskDescription`)) {
-            taskDescription.value = localStorage.getItem(`${taskFormId}-taskDescription`);
-        }
-    
-        // Retrieve and set the task date from localStorage using the form ID
-        if (localStorage.getItem(`${taskFormId}-taskDate`)) {
-            taskDate.value = localStorage.getItem(`${taskFormId}-taskDate`);
-        }
-    
-        // Retrieve and set the task priority from localStorage using the form ID
-        if (localStorage.getItem(`${taskFormId}-taskPriority`)) {
-            taskPriority.value = localStorage.getItem(`${taskFormId}-taskPriority`);
-        }
-    });
-}
+// function retrieveTask() {  
+
+// }
 
 function setTaskNumProperties(newTask) {
     newTask.setAttribute('data-task-num', taskSection.children.length) // taskCard
@@ -164,7 +142,7 @@ function saveTask(target) {
         taskPriority: taskPriority.value.trim()
     };
 
-    localStorage.setItem(`task-${taskCardForm.id}`, JSON.stringify(taskData));
+    localStorage.setItem(`${taskCardForm.id}`, JSON.stringify(taskData));
 }
 
 function deleteTask(target) {
@@ -173,7 +151,7 @@ function deleteTask(target) {
     const taskCardForm = target.closest('form');
 
     const taskId = taskCardForm.id; 
-    localStorage.removeItem(`task-${taskId}`);
+    localStorage.removeItem(`${taskId}`);
     taskCard.remove();
 
     // remove what was the last task card from localStorage
@@ -181,7 +159,7 @@ function deleteTask(target) {
     const numberPart = taskSection.childElementCount
     const lastTaskId = `${letterPart}${numberPart}`; // Combine letter and incremented number
 
-    localStorage.removeItem(`task-${lastTaskId}`)
+    localStorage.removeItem(`${lastTaskId}`)
 
 
     // reassign task-nums
