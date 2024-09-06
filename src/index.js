@@ -188,7 +188,12 @@ function deleteTask(target) {
     // remove target task card
     const taskCard = target.closest('.taskCard');
     taskCard.remove();
-    localStorage.removeItem()
+    // let key = taskCard.id
+    for (let key in localStorage) {
+        if (key.substring(0,2) == `${taskCard.id}`) {
+            localStorage.removeItem(key);
+        }
+    }
 
     // reassign task-nums
     for (let i=0; i<taskSection.children.length; i++) {
