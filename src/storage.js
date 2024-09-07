@@ -30,8 +30,6 @@ function saveTask(target) {
   let newTaskNum = target.getAttribute(`data-task-num`)
   const currentProjectTitle = currentProject.children[0].querySelector('b').textContent
   const taskCardForm = document.querySelector(`form#${currentProjectTitle}-${newTaskNum}`);
-  console.log(taskCardForm, currentProjectTitle, newTaskNum)
-
   const taskTitle = taskCardForm.querySelector('#taskTitle');
   const taskDescription = taskCardForm.querySelector('#taskDescription');
   const taskDate = taskCardForm.querySelector('#taskDate');
@@ -70,7 +68,6 @@ function deleteTask(target) {
     taskSection.children[i].children[0].setAttribute('id',`${letterPart}-${i}`) // form id
     // taskSection.children[i].querySelector('button[type="submit"]').setAttribute('form', `A${i}`) // submit button tied to form id
     saveTask(taskSection.children[i])
-
   }
 }
 

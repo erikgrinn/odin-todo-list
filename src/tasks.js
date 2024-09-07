@@ -16,11 +16,11 @@ function projectKeys(currentProject) {
             keys.push(key)
         }
     }
-    return {keys};
+    return keys;
 }
 
 function loadTasks(currentProject) {
-    const taskIds = projectKeys(currentProject).keys; // Ensure currentProject is correctly referenced.
+    const taskIds = projectKeys(currentProject); // Ensure currentProject is correctly referenced.
     taskIds.sort((a, b) => {
         // Extract the last 2 characters of both strings and convert them to numbers
         const numA = parseInt(a.slice(-2), 10); 
@@ -28,9 +28,7 @@ function loadTasks(currentProject) {
     
         // Compare the numeric parts
         return numB - numA;
-
     });
-    console.log(taskIds)
 
     for (let i=0; i<taskIds.length; i++) {
         // Retrieve the task data from localStorage
