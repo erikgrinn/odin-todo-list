@@ -7,6 +7,11 @@ const dialogTitle = document.querySelector('#dialogTitle')
 const projectTitleForm = document.getElementById('projectTitleForm')
 const currentProject = document.getElementById('currentProject')
 
+// initialize home local storage
+const currentProjectTitle = currentProject.children[0].querySelector('b').textContent
+localStorage.setItem(currentProjectTitle, currentProject.getAttribute('data-storage-letter'))
+
+
 function addProjectTitle(event) {
     dialogTitle.showModal()
 
