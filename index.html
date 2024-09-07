@@ -6,7 +6,7 @@
     <title>Todo List</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel='stylesheet' type='text/css' media='screen' href='84bb4fc080631c2605f1.css'>
-    <script defer src='831fa4f382486ead40ce.js'></script>
+    <script defer src='29bbafda5b8946a75050.js'></script>
 <script defer src="main.js"></script></head>
 <body>
     <div id="sidebar">
@@ -36,7 +36,7 @@
         </div>
     </div>
     <div id="main">
-        <div id="currentProject">
+        <div id="currentProject" data-storage-letter="A">
             <div id="currentProjectTitle">
                 <b>Home</b>
                 <button id="addTask">+</button>
@@ -44,32 +44,22 @@
             <div class="taskSection">
                 <div class="taskCard" data-task-num="0" style="display: none">
                     <form id="taskCardForm">
-                        <div class="taskTitle">
-                            <input type="text" id="newTaskTitle" placeholder="Title">
-                        </div>
-                        <div class="taskDescription">
-                            <textarea rows="2" id="newTaskDescription" placeholder="Description" style="font-weight: lighter"></textarea>
-                        </div>
+                        <input type="text" id="taskTitle" placeholder="Title">
+                        <textarea rows="2" id="taskDescription" placeholder="Description" style="font-weight: lighter"></textarea>
                         <div class="bottomCard">
                             <div class="dateandpriority">
-                                <div class="taskDate">
-                                    <input type="date" id="newTaskDate" placeholder="No Date">
-                                </div>
-                                <div class="taskPriority">
-                                    <label>
-                                        Priority:
-                                        <select id="newTaskPriority" name="priority">
-                                          <option value="">None</option>
-                                          <option value="1">I'll do it tomorrow...</option>
-                                          <option value="2">Now</option>
-                                          <option value="3">Should've been done yesterday</option>
-                                        </select>
-                                      </label>  
-                                </div>
+                                <input type="date" id="taskDate" placeholder="No Date">
+                                <label>
+                                    Priority:
+                                    <select id="taskPriority" name="priority">
+                                        <option value="">None</option>
+                                        <option value="1">I'll do it tomorrow...</option>
+                                        <option value="2">Now</option>
+                                        <option value="3">Should've been done yesterday</option>
+                                    </select>
+                                </label>  
                             </div>
                             <div class="icons">
-                                <!-- <button type="button" id="editBtn"><img src="./images/pencil-outline.svg" heigh="25px" width="25px"></button>
-                                <button type="submit" id="saveBtn" form="taskCardForm"><img src="./images/content-save-outline.svg" heigh="25px" width="25px"></button> -->
                                 <button type="button" id="deleteBtn" onclick="deleteTask(this)"><img src="de0bb67a90c508546224.svg" alt="deleteIcon" height="25px" width="25px"></button>
                             </div>
                         </div>
