@@ -31,7 +31,9 @@ function addProjectTitle(event) {
                     currentProject.children[1].children[i].remove()
                 }
             }
-            localStorage.setItem(`${projectTitles.childElementCount-1}`, newProj.getAttribute('data-storage-letter'))
+
+            // can't start project title with "task-"
+            localStorage.setItem(projTitle, newProj.getAttribute('data-storage-letter'))
             loadTasks(currentProject)
         }
         projectTitleForm.reset()
