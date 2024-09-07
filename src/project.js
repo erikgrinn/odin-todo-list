@@ -6,7 +6,6 @@ const addProjectBtn = document.getElementById('addProject')
 const dialogTitle = document.querySelector('#dialogTitle')
 const projectTitleForm = document.getElementById('projectTitleForm')
 const currentProject = document.getElementById('currentProject')
-currentProject.setAttribute('data-storage-letter', 'A')
 
 function addProjectTitle(event) {
     dialogTitle.showModal()
