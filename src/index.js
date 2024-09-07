@@ -1,7 +1,7 @@
 import "./styles.css";
 import {addProjectTitle} from './project.js';
-import { addTask, loadTasks } from './tasks.js'
-import { deleteTask } from "./storage.js";
+import { loadTasks, addTask } from './tasks.js'
+import { deleteTask, saveTask } from "./storage.js";
 
 
 const currentProject = document.getElementById('currentProject')

@@ -1,6 +1,3 @@
-// const taskSection = currentProject.children[1]
-
-
 function storeTask(task) {
   let newTaskNum = task.getAttribute(`data-task-num`)
   const taskCardForm = document.querySelector(`form#${currentProject.getAttribute('data-storage-letter')}${newTaskNum}`);
@@ -50,19 +47,18 @@ function saveTask(target) {
 
 function deleteTask(target) {
   const taskSection = currentProject.children[1]
+
   // remove target task card
   const taskCard = target.closest('.taskCard')
   const taskCardForm = target.closest('form');
-
   const taskId = taskCardForm.id; 
   localStorage.removeItem(`${taskId}`);
   taskCard.remove();
 
-  // remove what was the last task card from localStorage
-  const letterPart = taskId.match(/[a-zA-Z]+/)[0]; // Extract the letter(s)
+  // remove what was the last task card from localStorage, (can be redundant)
+  const letterPart = taskId.match(/[a-zA-Z]+/)[0]; 
   const numberPart = taskSection.childElementCount
   const lastTaskId = `${letterPart}${numberPart}`; 
-
   localStorage.removeItem(`${lastTaskId}`)
 
   // reassign task-nums
