@@ -6,7 +6,7 @@
     <title>Todo List</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel='stylesheet' type='text/css' media='screen' href='84bb4fc080631c2605f1.css'>
-    <script defer src='498bf9b602a86551f3d4.js'></script>
+    <script defer src='76c80c2a4dc756a1ce13.js'></script>
 <script defer src="main.js"></script></head>
 <body>
     <div id="sidebar">
@@ -31,7 +31,7 @@
                         <button type="button" id="cancelTitle">Cancel</button>
                     </form>
                 </dialog>
-                <button class="Home">Home</button>
+                <button class="Home" data-storage-letter="A">Home</button>
             </div>
         </div>
     </div>
@@ -58,13 +58,14 @@
                                 <div class="taskPriority">
                                     <label>
                                         Priority:
-                                        <select class="priority" name="priority">
+                                        <select id="newTaskPriority" name="priority">
                                           <option value="">None</option>
                                           <option value="1">I'll do it tomorrow...</option>
                                           <option value="2">Now</option>
                                           <option value="3">Should've been done yesterday</option>
                                         </select>
-                                      </label>                                </div>
+                                      </label>  
+                                </div>
                             </div>
                             <div class="icons">
                                 <!-- <button type="button" id="editBtn"><img src="./images/pencil-outline.svg" heigh="25px" width="25px"></button>
