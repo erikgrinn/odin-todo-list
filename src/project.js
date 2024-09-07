@@ -31,6 +31,7 @@ function addProjectTitle(event) {
                     currentProject.children[1].children[i].remove()
                 }
             }
+            localStorage.setItem(`${projectTitles.childElementCount-1}`, newProj.getAttribute('data-storage-letter'))
             loadTasks(currentProject)
         }
         projectTitleForm.reset()
