@@ -18,11 +18,11 @@ function storeTask(task) {
   [taskTitle, taskDescription, taskDate, taskPriority].forEach(input => {
     input.addEventListener('change', () => {
         taskData[input.id] = input.value.trim();
-        localStorage.setItem(taskCardForm.id, JSON.stringify(taskData));
+        localStorage.setItem(`task-${taskCardForm.id}`, JSON.stringify(taskData));
     });
-});
+  });
 
-  localStorage.setItem(`${taskCardForm.id}`, JSON.stringify(taskData));
+  localStorage.setItem(`task-${taskCardForm.id}`, JSON.stringify(taskData));
 }
 
 
@@ -42,7 +42,7 @@ function saveTask(target) {
       taskPriority: taskPriority.value.trim()
   };
 
-  localStorage.setItem(`${taskCardForm.id}`, JSON.stringify(taskData));
+  localStorage.setItem(`task-${taskCardForm.id}`, JSON.stringify(taskData));
 }
 
 function deleteTask(target) {
@@ -52,14 +52,14 @@ function deleteTask(target) {
   const taskCard = target.closest('.taskCard')
   const taskCardForm = target.closest('form');
   const taskId = taskCardForm.id; 
-  localStorage.removeItem(`${taskId}`);
+  localStorage.removeItem(`task-${taskId}`);
   taskCard.remove();
 
   // remove what was the last task card from localStorage, (can be redundant)
   const letterPart = taskId.match(/[a-zA-Z]+/)[0]; 
   const numberPart = taskSection.childElementCount
   const lastTaskId = `${letterPart}${numberPart}`; 
-  localStorage.removeItem(`${lastTaskId}`)
+  localStorage.removeItem(`task-${lastTaskId}`)
 
   // reassign task-nums
   for (let i=1; i<taskSection.children.length; i++) {

@@ -11,7 +11,7 @@ function projectKeys(currentProject) {
         const key = localStorage.key(i);
 
         // Check if the key starts with the specified letter or string
-        if (key.startsWith(`${currentProject.getAttribute('data-storage-letter')}`)) {
+        if (key.startsWith(`task-${currentProject.getAttribute('data-storage-letter')}`)) {
             keys.push(key)
         }
     }
@@ -31,7 +31,7 @@ function loadTasks(currentProject) {
 
     for (let i=0; i<taskIds.length; i++) {
         // Retrieve the task data from localStorage
-        const storedTaskData = localStorage.getItem(taskIds[i]);
+        const storedTaskData = localStorage.getItem(`${taskIds[i]}`);
         if (storedTaskData) {
             addTask(storedTaskData)
         } 
