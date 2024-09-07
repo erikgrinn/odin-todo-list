@@ -1,5 +1,6 @@
 import {storeTask, saveTask, deleteTask } from './storage.js';
 
+const currentProjectTitle = currentProject.children[0].querySelector('b').textContent
 const taskSection = currentProject.children[1]
 const taskCardTemplate = document.querySelector('.taskCard')
 const addTaskBtn = document.getElementById('addTask')
@@ -11,7 +12,7 @@ function projectKeys(currentProject) {
         const key = localStorage.key(i);
 
         // Check if the key starts with the specified letter or string
-        if (key.startsWith(`task-${currentProject.getAttribute('data-storage-letter')}`)) {
+        if (key.startsWith(`${currentProjectTitle}-`)) {
             keys.push(key)
         }
     }
@@ -19,15 +20,17 @@ function projectKeys(currentProject) {
 }
 
 function loadTasks(currentProject) {
-    const taskIds = projectKeys(currentProject).keys // double check currentProject here is correctly referenced?
+    const taskIds = projectKeys(currentProject).keys; // Ensure currentProject is correctly referenced.
     taskIds.sort((a, b) => {
-        // Extract the numeric part of both strings
-        const numA = parseInt(a.match(/\d+/)[0], 10); 
-        const numB = parseInt(b.match(/\d+/)[0], 10);
+        // Extract the last 2 characters of both strings and convert them to numbers
+        const numA = parseInt(a.slice(-2), 10); 
+        const numB = parseInt(b.slice(-2), 10);
     
         // Compare the numeric parts
-        return numA - numB;
+        return numB - numA;
+
     });
+    console.log(taskIds)
 
     for (let i=0; i<taskIds.length; i++) {
         // Retrieve the task data from localStorage
@@ -67,7 +70,7 @@ function addTask(storedTaskData) {
 
 function setTaskNumProperties(newTask) {
     newTask.setAttribute('data-task-num', taskSection.children.length) // taskCard
-    newTask.children[0].setAttribute('id', `${currentProject.getAttribute('data-storage-letter')}${taskSection.children.length}`) // form id
+    newTask.children[0].setAttribute('id', `${currentProjectTitle}-${taskSection.children.length}`) // form id
     // newTask.querySelector('button[type="submit"]').setAttribute('form', `A${taskSection.children.length}`) // submit button tied to form id
 }
 
