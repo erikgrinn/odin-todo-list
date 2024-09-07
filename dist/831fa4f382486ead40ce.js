@@ -23,7 +23,7 @@ currentProject.setAttribute('data-storage-letter', 'A')
 
 window.deleteTask = deleteTask; // using onclick in html
 
-localStorage.clear()
+// localStorage.clear()
 loadTasks(currentProject)
 
 
