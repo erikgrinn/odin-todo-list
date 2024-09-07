@@ -120,31 +120,34 @@ button {
     border-left-width: 12px;
 }
 
-.taskTitle {
+#taskTitle {
     margin-bottom: 4px;
+    background-color: none;
 }
 
-.taskDescription {
+#taskDescription {
     font-size: 20px;
 }
 
-.taskDate {
+#taskDate {
     font-weight: lighter;
     font-size: 16px;
     width: 30%;
 }
 
-.taskPriority {
+#taskPriority label {
+    background-color: inherit;
     font-weight: lighter;
     font-size: 16px;
 }
 
-.taskPriority select {
-    border-radius: 6px;
+#taskPriority {
+    border-radius: 16px;
 }
 
 .taskCard input,
 .taskCard textarea {
+    background: transparent;
     font: inherit;
     width: 100%;
     outline: none;
@@ -162,6 +165,8 @@ button {
 .taskCard .dateandpriority {
     display: flex;
     gap: 24px;
+    font-weight: lighter;
+    font-size: 16px;
     
 }
 

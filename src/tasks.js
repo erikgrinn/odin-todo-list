@@ -49,10 +49,10 @@ function addTask(storedTaskData) {
             const taskData = JSON.parse(storedTaskData);
         
             // Find the form elements
-            const taskTitle = newTask.querySelector('#newTaskTitle');
-            const taskDescription = newTask.querySelector('#newTaskDescription');
-            const taskDate = newTask.querySelector('#newTaskDate');
-            const taskPriority = newTask.querySelector('#newTaskPriority');
+            const taskTitle = newTask.querySelector('#taskTitle');
+            const taskDescription = newTask.querySelector('#taskDescription');
+            const taskDate = newTask.querySelector('#taskDate');
+            const taskPriority = newTask.querySelector('#taskPriority');
 
             // Populate the form fields with the retrieved data
             taskTitle.value = taskData.taskTitle;

@@ -5,10 +5,10 @@ function storeTask(task) {
   let newTaskNum = task.getAttribute(`data-task-num`)
   const taskCardForm = document.querySelector(`form#${currentProject.getAttribute('data-storage-letter')}${newTaskNum}`);
 
-  const taskTitle = taskCardForm.querySelector('#newTaskTitle');
-  const taskDescription = taskCardForm.querySelector('#newTaskDescription');
-  const taskDate = taskCardForm.querySelector('#newTaskDate');
-  const taskPriority = taskCardForm.querySelector('#newTaskPriority');
+  const taskTitle = taskCardForm.querySelector('#taskTitle');
+  const taskDescription = taskCardForm.querySelector('#taskDescription');
+  const taskDate = taskCardForm.querySelector('#taskDate');
+  const taskPriority = taskCardForm.querySelector('#taskPriority');
 
   let taskData = {
       taskTitle: taskTitle.value.trim(),
@@ -17,26 +17,13 @@ function storeTask(task) {
       taskPriority: taskPriority.value.trim()
   };
 
-  // change event listeners
-  taskTitle.addEventListener("change", () => {
-          taskData.taskTitle = taskTitle.value.trim()
-          localStorage.setItem(`${taskCardForm.id}`, JSON.stringify(taskData));
-  });
-
-  taskDescription.addEventListener("change", () => {
-      taskData.taskDescription = taskDescription.value.trim()
-      localStorage.setItem(`${taskCardForm.id}`, JSON.stringify(taskData));
-  });
-
-  taskDate.addEventListener("change", () => {
-          taskData.taskDate = taskDate.value.trim()
-          localStorage.setItem(`${taskCardForm.id}`, JSON.stringify(taskData));   
-      });
-
-  taskPriority.addEventListener("change", () => {
-          taskData.taskPriority = taskPriority.value.trim()
-          localStorage.setItem(`${taskCardForm.id}`, JSON.stringify(taskData));    
-      });
+    // change event listeners
+  [taskTitle, taskDescription, taskDate, taskPriority].forEach(input => {
+    input.addEventListener('change', () => {
+        taskData[input.id] = input.value.trim();
+        localStorage.setItem(taskCardForm.id, JSON.stringify(taskData));
+    });
+});
 
   localStorage.setItem(`${taskCardForm.id}`, JSON.stringify(taskData));
 }
@@ -46,10 +33,10 @@ function saveTask(target) {
   let newTaskNum = target.getAttribute(`data-task-num`)
   const taskCardForm = document.querySelector(`form#${currentProject.getAttribute('data-storage-letter')}${newTaskNum}`);
 
-  const taskTitle = taskCardForm.querySelector('#newTaskTitle');
-  const taskDescription = taskCardForm.querySelector('#newTaskDescription');
-  const taskDate = taskCardForm.querySelector('#newTaskDate');
-  const taskPriority = taskCardForm.querySelector('#newTaskPriority');
+  const taskTitle = taskCardForm.querySelector('#taskTitle');
+  const taskDescription = taskCardForm.querySelector('#taskDescription');
+  const taskDate = taskCardForm.querySelector('#taskDate');
+  const taskPriority = taskCardForm.querySelector('#taskPriority');
 
   let taskData = {
       taskTitle: taskTitle.value.trim(),
