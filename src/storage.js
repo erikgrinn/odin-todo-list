@@ -1,6 +1,7 @@
 function storeTask(task) {
+  console.log(task)
   let newTaskNum = task.getAttribute(`data-task-num`)
-  const currentProjectTitle = currentProject.children[0].querySelector('b').textContent
+  const currentProjectTitle = document.querySelector('#currentProjectTitle > b').textContent;
   const taskCardForm = document.querySelector(`form#${currentProjectTitle}-${newTaskNum}`);
   const taskTitle = taskCardForm.querySelector('#taskTitle');
   const taskDescription = taskCardForm.querySelector('#taskDescription');
@@ -24,7 +25,6 @@ function storeTask(task) {
 
   localStorage.setItem(`${taskCardForm.id}`, JSON.stringify(taskData));
 }
-
 
 function saveTask(target) {
   let newTaskNum = target.getAttribute(`data-task-num`)

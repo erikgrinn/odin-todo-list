@@ -48,7 +48,6 @@ function addTask(storedTaskData) {
         let newTask = taskCardTemplate.cloneNode(true) // clone node with children
         newTask.style.display = 'block'
         setTaskProperties(newTask)
-        console.log(newTask)
         taskSection.appendChild(newTask)
         
         // if taskData passed from loadTasks()
@@ -74,6 +73,7 @@ function addTask(storedTaskData) {
     }
 
 function setTaskProperties(newTask) {
+    const currentProjectTitle = currentProject.children[0].querySelector('b').textContent
     newTask.setAttribute('data-task-num', taskSection.children.length) // taskCard
     newTask.children[0].setAttribute('id', `${currentProjectTitle}-${taskSection.children.length}`) // form id
     // newTask.querySelector('button[type="submit"]').setAttribute('form', `A${taskSection.children.length}`) // submit button tied to form id
