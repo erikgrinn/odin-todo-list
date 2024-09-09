@@ -1,5 +1,4 @@
 function storeTask(task) {
-  console.log(task)
   let newTaskNum = task.getAttribute(`data-task-num`)
   const currentProjectTitle = document.querySelector('#currentProjectTitle > b').textContent;
   const taskCardForm = document.querySelector(`form#${currentProjectTitle}-${newTaskNum}`);
@@ -12,8 +11,6 @@ function storeTask(task) {
   taskCardForm.addEventListener('keydown', function(event) {
     if (event.key === 'Enter') { // Check if the 'Enter' key is pressed
         event.preventDefault();   // Prevent the default form submission
-        // You can also add any custom behavior here, like validating input, etc.
-        console.log("Enter key was pressed, but form submission is prevented.");
     }
   });
 

@@ -94,6 +94,7 @@ function loadProjectTitles() {
 
         projectTitles.appendChild(newProj);
     });
+    loadProjectTasks()
 }
 
 function loadProjectTasks() {
@@ -103,7 +104,6 @@ function loadProjectTasks() {
         console.log(projectList, project)
         const projectName = project.key.substring(8)
         const projectBtn = document.querySelector(`button.${projectName}`)
-
 
         projectBtn.addEventListener('click', () => {
             const currentProjectTitleElement = document.querySelector('#currentProjectTitle > b');
@@ -123,7 +123,7 @@ function loadProjectTasks() {
 
 initProjectStorage()
 loadProjectTitles()
-loadProjectTasks()
+
 
 // localStorage.clear()
 export {handleProjectTitleSubmit, loadProjectTitles, storeProject}
