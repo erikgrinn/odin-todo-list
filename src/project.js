@@ -16,7 +16,6 @@ function getCurrentProjectTitle() {
     return currentProject.children[0].querySelector('b').textContent
 }
 
-
 function storeProject(newProject) {
         const sortedProjects = getProjects()
         const lastStoredValue = sortedProjects[sortedProjects.length-1].value
@@ -46,8 +45,6 @@ function handleProjectTitleSubmit(event) {
                 currentProject.children[1].children[i].remove()
             }
         }
-
-        // loadTasks(currentProject)
     }
     projectTitleForm.reset()
     dialogTitle.close();
@@ -76,8 +73,8 @@ function getProjects() {
     keyValuePairs.sort((a, b) => a.value.localeCompare(b.value));
 
     // const sortedKeys = keyValuePairs.map(pair => pair.key);
-    const sortedProjects = keyValuePairs
-    return sortedProjects
+
+    return keyValuePairs
 
 }
 
@@ -112,12 +109,14 @@ function projectLoadTasks() {
 
         projectBtn.addEventListener('click', () => {
             // console.log(project)
-            const currentProjectTitle = document.querySelector('#currentProjectTitle > b').textContent;
+            const currentProjectTitleElement = document.querySelector('#currentProjectTitle > b');
+            const currentProjectTitle = currentProjectTitleElement.textContent
             console.log(currentProjectTitle, projectName)
             if (currentProjectTitle !== projectName) {
                 for (let i = currentProject.children[1].children.length-1; i > 0; i--) {
                     currentProject.children[1].children[i].remove()
                 }
+                currentProjectTitleElement.textContent = projectName
             } else {
                 return
             }
