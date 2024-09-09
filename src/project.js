@@ -81,7 +81,7 @@ function getProjects() {
 
 }
 
-function loadProjects() {
+function loadProjectTitles() {
     const projectList = getProjects().slice(1); // Retrieve sorted projects from localStorage (except home)
     
     projectList.forEach(project => {
@@ -116,7 +116,7 @@ function loadProjects() {
 
 initProjectStorage()
 
-loadProjects()
+loadProjectTitles()
 // projectLoadTasks()
 
-export {handleProjectTitleSubmit, loadProjects, storeProject}
+export {handleProjectTitleSubmit, loadProjectTitles, storeProject}

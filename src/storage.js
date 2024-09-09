@@ -28,7 +28,7 @@ function storeTask(task) {
 
 function saveTask(target) {
   let newTaskNum = target.getAttribute(`data-task-num`)
-  const currentProjectTitle = currentProject.children[0].querySelector('b').textContent
+  const currentProjectTitle = document.querySelector('#currentProjectTitle > b').textContent
   const taskCardForm = document.querySelector(`form#${currentProjectTitle}-${newTaskNum}`);
   const taskTitle = taskCardForm.querySelector('#taskTitle');
   const taskDescription = taskCardForm.querySelector('#taskDescription');
@@ -47,7 +47,7 @@ function saveTask(target) {
 
 function deleteTask(target) {
   const taskSection = currentProject.children[1]
-  const currentProjectTitle = currentProject.children[0].querySelector('b').textContent
+  const currentProjectTitle = document.querySelector('#currentProjectTitle > b').textContent
 
   // remove target task card
   const taskCard = target.closest('.taskCard')

@@ -1,11 +1,11 @@
 import {storeTask, saveTask, deleteTask } from './storage.js';
 
-const currentProjectTitle = currentProject.children[0].querySelector('b').textContent
+const currentProjectTitle = document.querySelector('#currentProjectTitle > b').textContent
 const taskSection = currentProject.children[1]
 const taskCardTemplate = document.querySelector('.taskCard')
 const addTaskBtn = document.getElementById('addTask')
 
-function projectKeys(currentProject) {
+function projectKeys(currentProjectTitle) {
     
     let keys = []
 
@@ -20,8 +20,8 @@ function projectKeys(currentProject) {
     return keys;
 }
 
-function loadTasks(currentProject) {
-    const taskIds = projectKeys(currentProject); // Ensure currentProject is correctly referenced.
+function loadTasks(currentProjectTitle) {
+    const taskIds = projectKeys(currentProjectTitle); // Ensure currentProject is correctly referenced.
     if (!taskIds) {
         return
     }
@@ -73,7 +73,7 @@ function addTask(storedTaskData) {
     }
 
 function setTaskProperties(newTask) {
-    const currentProjectTitle = currentProject.children[0].querySelector('b').textContent
+    const currentProjectTitle = document.querySelector('#currentProjectTitle > b').textContent
     newTask.setAttribute('data-task-num', taskSection.children.length) // taskCard
     newTask.children[0].setAttribute('id', `${currentProjectTitle}-${taskSection.children.length}`) // form id
     // newTask.querySelector('button[type="submit"]').setAttribute('form', `A${taskSection.children.length}`) // submit button tied to form id

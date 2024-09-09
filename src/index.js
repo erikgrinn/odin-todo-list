@@ -4,12 +4,15 @@ import { loadTasks, addTask } from './tasks.js'
 import { deleteTask, saveTask } from "./storage.js";
 
 
-const currentProjectTitle = document.getElementById('currentProject')
+const currentProject = document.getElementById('currentProject')
 currentProject.setAttribute('data-storage-letter', 'A')
+
+const currentProjectTitle = document.querySelector('#currentProjectTitle > b').textContent
 
 window.deleteTask = deleteTask; // using onclick in html
 
 // localStorage.clear()
-loadTasks(currentProject)
+loadTasks(currentProjectTitle)
+console.log(currentProjectTitle)
 
 
