@@ -126,6 +126,7 @@ button {
 }
 
 #taskDescription {
+    font-weight: lighter;
     font-size: 20px;
 }
 
@@ -147,6 +148,7 @@ button {
 
 .taskCard input,
 .taskCard textarea {
+
     background: transparent;
     font: inherit;
     width: 100%;

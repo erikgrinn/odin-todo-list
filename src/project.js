@@ -7,53 +7,66 @@ const dialogTitle = document.querySelector('#dialogTitle')
 const projectTitleForm = document.getElementById('projectTitleForm')
 const currentProject = document.getElementById('currentProject')
 
-// initialize home local storage
-const currentProjectTitle = currentProject.children[0].querySelector('b').textContent
-localStorage.setItem(`project-${currentProjectTitle}`, currentProject.getAttribute('data-storage-letter'))
-
-
-function addProjectTitle(event) {
-    dialogTitle.showModal()
-
-    projectTitleForm.addEventListener('submit', function(event) {
-        event.preventDefault();
-    
-        const projTitle = document.getElementById('newTitle').value.trim();
-
-        if (projTitle) { // needed to prevent empty buttons being added
-            let newProj = projectTemplate.cloneNode()
-            newProj.textContent = projTitle
-            newProj.setAttribute('class', projTitle.replace(/\s+/g, '-')) // class names can't have spaces
-            newProj.setAttribute('data-storage-letter', String.fromCharCode(65 + (projectTitles.childElementCount-1))) // ASCII char for uppercase, starting at B
-            projectTitles.appendChild(newProj)
-
-            currentProject.children[0].querySelector('b').textContent = projTitle
-            currentProject.setAttribute('data-storage-letter', newProj.getAttribute('data-storage-letter'))
-
-            // remove all tasks except first hidden empty taskCard
-            if (currentProject.children[1].children[1]) {
-                for (let i = currentProject.children[1].children.length-1; i > 0; i--) {
-                    currentProject.children[1].children[i].remove()
-                }
-            }
-
-            // can't start project title with "task-"
-            localStorage.setItem(`project-${projTitle}`, newProj.getAttribute('data-storage-letter'))
-            loadTasks(currentProject)
-        }
-        projectTitleForm.reset()
-        dialogTitle.close();
-    })
-    
-    const cancelBtn = document.getElementById('cancelTitle')
-    cancelBtn.addEventListener('click', () => {
-      projectTitleForm.reset()
-      dialogTitle.close()
-    })
+function initProjectStorage() {
+    const currentProjectTitle = currentProject.children[0].querySelector('b').textContent
+    localStorage.setItem(`project-${currentProjectTitle}`, currentProject.getAttribute('data-storage-letter'))
 }
 
-addProjectBtn.addEventListener('click', () => addProjectTitle())
+function getCurrentProjectTitle() {
+    return currentProject.children[0].querySelector('b').textContent
+}
 
+
+function setNextStorageLetter(newProject) {
+        const sortedProjects = getProjects()
+        const lastStoredValue = sortedProjects[sortedProjects.length-1].value
+        const lastLetter = lastStoredValue.charAt(0)
+        const nextLetter = String.fromCharCode(lastLetter.charCodeAt(0) + 1)
+        newProject.setAttribute('data-storage-letter', nextLetter)
+        // const letterPart = taskId.match(/[a-zA-Z]+/)[0]; 
+
+}
+
+function handleProjectTitleSubmit(event) {
+    event.preventDefault();
+    const projTitle = document.getElementById('newTitle').value.trim();
+
+    if (projTitle) { // needed to prevent empty buttons being added
+        let newProj = projectTemplate.cloneNode()
+        newProj.textContent = projTitle
+        newProj.setAttribute('class', projTitle.replace(/\s+/g, '-')) // class names can't have spaces
+        // newProj.setAttribute('data-storage-letter', String.fromCharCode(65 + (projectTitles.childElementCount-1))) // ASCII char for uppercase, starting at B
+        setNextStorageLetter(newProj)
+        projectTitles.appendChild(newProj)
+
+        currentProject.children[0].querySelector('b').textContent = projTitle
+        currentProject.setAttribute('data-storage-letter', newProj.getAttribute('data-storage-letter'))
+
+        // remove all tasks except first hidden empty taskCard
+        if (currentProject.children[1].children[1]) {
+            for (let i = currentProject.children[1].children.length-1; i > 0; i--) {
+                currentProject.children[1].children[i].remove()
+            }
+        }
+
+        // can't start project title with "project-"
+        localStorage.setItem(`project-${projTitle}`, newProj.getAttribute('data-storage-letter'))
+        loadTasks(currentProject)
+    }
+    projectTitleForm.reset()
+    dialogTitle.close();
+}
+  
+const cancelBtn = document.getElementById('cancelTitle')
+cancelBtn.addEventListener('click', () => {
+    projectTitleForm.reset()
+    dialogTitle.close()
+})
+projectTitleForm.addEventListener('submit', handleProjectTitleSubmit);
+
+
+
+addProjectBtn.addEventListener('click', () => dialogTitle.showModal())
 
 function getProjects() {
     // Step 1: Get all keys from localStorage
@@ -69,8 +82,9 @@ function getProjects() {
     keyValuePairs.sort((a, b) => a.value.localeCompare(b.value));
 
     // Step 4: Extract the sorted keys
-    const sortedKeys = keyValuePairs.map(pair => pair.key);
-    return sortedKeys
+    // const sortedKeys = keyValuePairs.map(pair => pair.key);
+    const sortedProjects = keyValuePairs
+    return sortedProjects
 
 }
 
@@ -78,9 +92,10 @@ function loadProjects() {
     const projectList = getProjects(); 
     console.log(projectList)
 
-    
 }
+
+initProjectStorage()
 
 loadProjects()
 
-export {addProjectTitle, loadProjects}
+export {handleProjectTitleSubmit, loadProjects}

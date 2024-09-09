@@ -1,5 +1,5 @@
 import "./styles.css";
-import {addProjectTitle, loadProjects} from './project.js';
+import {handleProjectTitleSubmit, loadProjects} from './project.js';
 import { loadTasks, addTask } from './tasks.js'
 import { deleteTask, saveTask } from "./storage.js";
 
