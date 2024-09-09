@@ -122,8 +122,7 @@ function projectLoadTasks() {
 
 initProjectStorage()
 loadProjectTitles()
-// localStorage.clear()
 projectLoadTasks()
 
-
+// localStorage.clear()
 export {handleProjectTitleSubmit, loadProjectTitles, storeProject}
