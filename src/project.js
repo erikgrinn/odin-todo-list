@@ -35,6 +35,7 @@ function handleProjectTitleSubmit(event) {
         newProj.textContent = projTitle
         newProj.setAttribute('class', projTitle.replace(/\s+/g, '-')) // class names can't have spaces
         projectTitles.appendChild(newProj)
+        storeProject(newProj)
 
         currentProject.children[0].querySelector('b').textContent = projTitle
         currentProject.setAttribute('data-storage-letter', newProj.getAttribute('data-storage-letter'))
@@ -46,8 +47,6 @@ function handleProjectTitleSubmit(event) {
             }
         }
 
-        // can't start project title with "project-"
-        storeProject(newProj)
         loadTasks(currentProject)
     }
     projectTitleForm.reset()
@@ -60,8 +59,6 @@ cancelBtn.addEventListener('click', () => {
     dialogTitle.close()
 })
 projectTitleForm.addEventListener('submit', handleProjectTitleSubmit);
-
-
 
 addProjectBtn.addEventListener('click', () => dialogTitle.showModal())
 
@@ -86,9 +83,21 @@ function getProjects() {
 }
 
 function loadProjects() {
-    const projectList = getProjects(); 
-    console.log(projectList)
+    const projectList = getProjects().slice(1); // Retrieve sorted projects from localStorage (except home)
+    
+    projectList.forEach(project => {
+        const projTitle = project.key.replace('project-', ''); // Remove 'project-' prefix from keys
+        const storageLetter = project.value; // Storage letter is the value
 
+        // Create a new project button
+        let newProj = projectTemplate.cloneNode();
+        newProj.textContent = projTitle;
+        newProj.setAttribute('class', projTitle.replace(/\s+/g, '-')); // Class name can't have spaces
+        newProj.setAttribute('data-storage-letter', storageLetter); // Set storage letter
+
+        // Append the project button to the projectTitles container
+        projectTitles.appendChild(newProj);
+    });
 }
 
 initProjectStorage()
