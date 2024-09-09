@@ -47,7 +47,7 @@ function handleProjectTitleSubmit(event) {
             }
         }
 
-        loadTasks(currentProject)
+        // loadTasks(currentProject)
     }
     projectTitleForm.reset()
     dialogTitle.close();
@@ -66,16 +66,15 @@ function getProjects() {
     // Step 1: Get all keys from localStorage
     const keys = Object.keys(localStorage);
 
-    // Step 2: Map the keys to an array of objects with both keys and values
-    const keyValuePairs = keys.map(key => ({
+    const projectKeys = keys.filter(key => key.startsWith('project'));
+
+    const keyValuePairs = projectKeys.map(key => ({
         key: key,
         value: localStorage.getItem(key) // Get the corresponding value for each key
     }));
 
-    // Step 3: Sort the array based on the 'value' property
     keyValuePairs.sort((a, b) => a.value.localeCompare(b.value));
 
-    // Step 4: Extract the sorted keys
     // const sortedKeys = keyValuePairs.map(pair => pair.key);
     const sortedProjects = keyValuePairs
     return sortedProjects
@@ -97,11 +96,27 @@ function loadProjects() {
 
         // Append the project button to the projectTitles container
         projectTitles.appendChild(newProj);
+
     });
 }
+
+// function projectLoadTasks() {
+//     const projectList = getProjects()
+//     projectList.forEach(project => {
+//         console.log(projectList)
+
+//         project.addEventListener('click', () => {
+//             console.log(project)
+//             loadTasks(project.key)
+
+
+//         })
+//     }
+// )}
 
 initProjectStorage()
 
 loadProjects()
+// projectLoadTasks()
 
 export {handleProjectTitleSubmit, loadProjects, storeProject}
