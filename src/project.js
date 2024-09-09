@@ -17,14 +17,13 @@ function getCurrentProjectTitle() {
 }
 
 
-function setNextStorageLetter(newProject) {
+function storeProject(newProject) {
         const sortedProjects = getProjects()
         const lastStoredValue = sortedProjects[sortedProjects.length-1].value
         const lastLetter = lastStoredValue.charAt(0)
         const nextLetter = String.fromCharCode(lastLetter.charCodeAt(0) + 1)
         newProject.setAttribute('data-storage-letter', nextLetter)
-        // const letterPart = taskId.match(/[a-zA-Z]+/)[0]; 
-
+        localStorage.setItem(`project-${newProject.textContent}`, newProject.getAttribute('data-storage-letter'))
 }
 
 function handleProjectTitleSubmit(event) {
@@ -35,8 +34,6 @@ function handleProjectTitleSubmit(event) {
         let newProj = projectTemplate.cloneNode()
         newProj.textContent = projTitle
         newProj.setAttribute('class', projTitle.replace(/\s+/g, '-')) // class names can't have spaces
-        // newProj.setAttribute('data-storage-letter', String.fromCharCode(65 + (projectTitles.childElementCount-1))) // ASCII char for uppercase, starting at B
-        setNextStorageLetter(newProj)
         projectTitles.appendChild(newProj)
 
         currentProject.children[0].querySelector('b').textContent = projTitle
@@ -50,7 +47,7 @@ function handleProjectTitleSubmit(event) {
         }
 
         // can't start project title with "project-"
-        localStorage.setItem(`project-${projTitle}`, newProj.getAttribute('data-storage-letter'))
+        storeProject(newProj)
         loadTasks(currentProject)
     }
     projectTitleForm.reset()
@@ -98,4 +95,4 @@ initProjectStorage()
 
 loadProjects()
 
-export {handleProjectTitleSubmit, loadProjects}
+export {handleProjectTitleSubmit, loadProjects, storeProject}
