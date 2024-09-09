@@ -11,7 +11,6 @@ const currentProjectTitle = document.querySelector('#currentProjectTitle > b').t
 
 window.deleteTask = deleteTask; // using onclick in html
 
-// localStorage.clear()
 loadTasks(currentProjectTitle)
 
 // need to preventdefault on enter key

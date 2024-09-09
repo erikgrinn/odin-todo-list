@@ -76,7 +76,8 @@ function setTaskProperties(newTask) {
     const currentProjectTitle = document.querySelector('#currentProjectTitle > b').textContent
     newTask.setAttribute('data-task-num', taskSection.children.length) // taskCard
     newTask.children[0].setAttribute('id', `${currentProjectTitle}-${taskSection.children.length}`) // form id
-    // newTask.querySelector('button[type="submit"]').setAttribute('form', `A${taskSection.children.length}`) // submit button tied to form id
+
+
 }
 
 addTaskBtn.addEventListener('click', () => addTask())

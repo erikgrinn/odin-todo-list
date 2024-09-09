@@ -91,9 +91,7 @@ function loadProjectTitles() {
         newProj.setAttribute('class', projTitle.replace(/\s+/g, '-')); // Class name can't have spaces
         newProj.setAttribute('data-storage-letter', storageLetter); // Set storage letter
 
-        // Append the project button to the projectTitles container
         projectTitles.appendChild(newProj);
-
     });
 }
 
@@ -102,16 +100,12 @@ function projectLoadTasks() {
     projectList.forEach(project => {
         console.log(projectList, project)
         const projectName = project.key.substring(8)
-        console.log(projectName)
         const projectBtn = document.querySelector(`button.${projectName}`)
-        console.log(projectBtn)
 
 
         projectBtn.addEventListener('click', () => {
-            // console.log(project)
             const currentProjectTitleElement = document.querySelector('#currentProjectTitle > b');
             const currentProjectTitle = currentProjectTitleElement.textContent
-            console.log(currentProjectTitle, projectName)
             if (currentProjectTitle !== projectName) {
                 for (let i = currentProject.children[1].children.length-1; i > 0; i--) {
                     currentProject.children[1].children[i].remove()
