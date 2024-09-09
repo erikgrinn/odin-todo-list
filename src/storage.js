@@ -9,13 +9,13 @@ function storeTask(task) {
   const taskPriority = taskCardForm.querySelector('#taskPriority');
 
   // this is preventing project titles from loading properly
-  // taskCardForm.addEventListener('keydown', function(event) {
-  //   if (event.key === 'Enter') { // Check if the 'Enter' key is pressed
-  //       event.preventDefault();   // Prevent the default form submission
-  //       // You can also add any custom behavior here, like validating input, etc.
-  //       console.log("Enter key was pressed, but form submission is prevented.");
-  //   }
-  // });
+  taskCardForm.addEventListener('keydown', function(event) {
+    if (event.key === 'Enter') { // Check if the 'Enter' key is pressed
+        event.preventDefault();   // Prevent the default form submission
+        // You can also add any custom behavior here, like validating input, etc.
+        console.log("Enter key was pressed, but form submission is prevented.");
+    }
+  });
 
   let taskData = {
       taskTitle: taskTitle.value.trim(),
@@ -80,5 +80,5 @@ function deleteTask(target) {
   }
 }
 
-
+// localStorage.clear()
 export {storeTask, saveTask, deleteTask}

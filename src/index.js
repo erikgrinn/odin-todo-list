@@ -13,6 +13,7 @@ window.deleteTask = deleteTask; // using onclick in html
 
 loadTasks(currentProjectTitle)
 
+
 // need to preventdefault on enter key
 
 

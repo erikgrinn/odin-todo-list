@@ -46,6 +46,7 @@ function handleProjectTitleSubmit(event) {
             }
         }
     }
+    loadProjectTasks()
     projectTitleForm.reset()
     dialogTitle.close();
 }
@@ -95,8 +96,9 @@ function loadProjectTitles() {
     });
 }
 
-function projectLoadTasks() {
+function loadProjectTasks() {
     const projectList = getProjects()
+    console.log(projectList)
     projectList.forEach(project => {
         console.log(projectList, project)
         const projectName = project.key.substring(8)
@@ -111,18 +113,17 @@ function projectLoadTasks() {
                     currentProject.children[1].children[i].remove()
                 }
                 currentProjectTitleElement.textContent = projectName
+                loadTasks(projectName)
             } else {
                 return
             }
-            loadTasks(projectName)
-
         })
     }
 )}
 
 initProjectStorage()
 loadProjectTitles()
-projectLoadTasks()
+loadProjectTasks()
 
 // localStorage.clear()
 export {handleProjectTitleSubmit, loadProjectTitles, storeProject}
