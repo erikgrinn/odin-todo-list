@@ -9,7 +9,7 @@ const currentProject = document.getElementById('currentProject')
 
 // initialize home local storage
 const currentProjectTitle = currentProject.children[0].querySelector('b').textContent
-localStorage.setItem(currentProjectTitle, currentProject.getAttribute('data-storage-letter'))
+localStorage.setItem(`project-${currentProjectTitle}`, currentProject.getAttribute('data-storage-letter'))
 
 
 function addProjectTitle(event) {
@@ -38,7 +38,7 @@ function addProjectTitle(event) {
             }
 
             // can't start project title with "task-"
-            localStorage.setItem(projTitle, newProj.getAttribute('data-storage-letter'))
+            localStorage.setItem(`project-${projTitle}`, newProj.getAttribute('data-storage-letter'))
             loadTasks(currentProject)
         }
         projectTitleForm.reset()
@@ -54,4 +54,33 @@ function addProjectTitle(event) {
 
 addProjectBtn.addEventListener('click', () => addProjectTitle())
 
-export {addProjectTitle}
+
+function getProjects() {
+    // Step 1: Get all keys from localStorage
+    const keys = Object.keys(localStorage);
+
+    // Step 2: Map the keys to an array of objects with both keys and values
+    const keyValuePairs = keys.map(key => ({
+        key: key,
+        value: localStorage.getItem(key) // Get the corresponding value for each key
+    }));
+
+    // Step 3: Sort the array based on the 'value' property
+    keyValuePairs.sort((a, b) => a.value.localeCompare(b.value));
+
+    // Step 4: Extract the sorted keys
+    const sortedKeys = keyValuePairs.map(pair => pair.key);
+    return sortedKeys
+
+}
+
+function loadProjects() {
+    const projectList = getProjects(); 
+    console.log(projectList)
+
+    
+}
+
+loadProjects()
+
+export {addProjectTitle, loadProjects}

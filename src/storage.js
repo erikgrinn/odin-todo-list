@@ -71,4 +71,5 @@ function deleteTask(target) {
   }
 }
 
+
 export {storeTask, saveTask, deleteTask}
