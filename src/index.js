@@ -13,6 +13,7 @@ window.deleteTask = deleteTask; // using onclick in html
 
 // localStorage.clear()
 loadTasks(currentProjectTitle)
-console.log(currentProjectTitle)
+
+// need to preventdefault on enter key
 
 

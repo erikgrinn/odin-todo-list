@@ -8,7 +8,7 @@ const projectTitleForm = document.getElementById('projectTitleForm')
 const currentProject = document.getElementById('currentProject')
 
 function initProjectStorage() {
-    const currentProjectTitle = currentProject.children[0].querySelector('b').textContent
+    const currentProjectTitle = document.querySelector('#currentProjectTitle > b').textContent;
     localStorage.setItem(`project-${currentProjectTitle}`, currentProject.getAttribute('data-storage-letter'))
 }
 
@@ -100,23 +100,37 @@ function loadProjectTitles() {
     });
 }
 
-// function projectLoadTasks() {
-//     const projectList = getProjects()
-//     projectList.forEach(project => {
-//         console.log(projectList)
+function projectLoadTasks() {
+    const projectList = getProjects()
+    projectList.forEach(project => {
+        console.log(projectList, project)
+        const projectName = project.key.substring(8)
+        console.log(projectName)
+        const projectBtn = document.querySelector(`button.${projectName}`)
+        console.log(projectBtn)
 
-//         project.addEventListener('click', () => {
-//             console.log(project)
-//             loadTasks(project.key)
 
+        projectBtn.addEventListener('click', () => {
+            // console.log(project)
+            const currentProjectTitle = document.querySelector('#currentProjectTitle > b').textContent;
+            console.log(currentProjectTitle, projectName)
+            if (currentProjectTitle !== projectName) {
+                for (let i = currentProject.children[1].children.length-1; i > 0; i--) {
+                    currentProject.children[1].children[i].remove()
+                }
+            } else {
+                return
+            }
+            loadTasks(projectName)
 
-//         })
-//     }
-// )}
+        })
+    }
+)}
 
 initProjectStorage()
-
 loadProjectTitles()
-// projectLoadTasks()
+// localStorage.clear()
+projectLoadTasks()
+
 
 export {handleProjectTitleSubmit, loadProjectTitles, storeProject}
