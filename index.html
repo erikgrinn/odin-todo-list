@@ -6,7 +6,7 @@
     <title>Todo List</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel='stylesheet' type='text/css' media='screen' href='84bb4fc080631c2605f1.css'>
-    <script defer src='29bbafda5b8946a75050.js'></script>
+    <script defer src='7a5fd7f4a7194e77435f.js'></script>
 <script defer src="main.js"></script></head>
 <body>
     <div id="sidebar">
@@ -21,6 +21,17 @@
         <div id="myProjects">
             <div id="myProjectsHeader">
                 <b>My Projects</b>
+                <button id="deleteProject">-</button>
+                <dialog id="deleteProjectDialog">
+                    <form id="deleteProjectForm" method="dialog">
+                        <h3>Select a project to delete:</h3>
+                        <select id="projectSelect"></select>
+                        <div>
+                            <button type="submit" id="confirmDeleteBtn" form="deleteProjectForm">Delete</button>
+                            <button id="cancelDeleteBtn">Cancel</button>
+                        </div>
+                    </form>
+                </dialog>
                 <button id="addProject">+</button>
             </div>
             <div id="projectTitles">
@@ -45,7 +56,7 @@
                 <div class="taskCard" data-task-num="0" style="display: none">
                     <form id="taskCardForm">
                         <input type="text" id="taskTitle" placeholder="Title">
-                        <textarea rows="2" id="taskDescription" placeholder="Description" style="font-weight: lighter"></textarea>
+                        <textarea rows="2" id="taskDescription" placeholder="Description"></textarea>
                         <div class="bottomCard">
                             <div class="dateandpriority">
                                 <input type="date" id="taskDate" placeholder="No Date">
