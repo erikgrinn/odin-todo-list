@@ -2,7 +2,9 @@ import {loadTasks} from './tasks.js';
 
 const projectTitles = document.getElementById('projectTitles')
 const projectTemplate = document.createElement('button')
+const delProjectBtn = document.getElementById('deleteProject')
 const addProjectBtn = document.getElementById('addProject')
+const deleteProjectDialog = document.getElementById('deleteProjectDialog')
 const dialogTitle = document.querySelector('#dialogTitle')
 const projectTitleForm = document.getElementById('projectTitleForm')
 const currentProject = document.getElementById('currentProject')
@@ -15,6 +17,28 @@ function initProjectStorage() {
 function getCurrentProjectTitle() {
     return currentProject.children[0].querySelector('b').textContent
 }
+
+function deleteProject(event) {
+        const projects = getProjects();
+        console.log(projects)
+        
+        // Get the select dropdown
+        const projectSelect = document.getElementById('projectSelect');
+    
+        // Clear the previous options in the select dropdown
+        projectSelect.innerHTML = '';
+    
+        // Loop through each project and create an <option> element
+        projects.forEach(project => {
+            const option = document.createElement('option'); // Use document.createElement
+            option.textContent = project.key.substring(8); // Remove 'project-' prefix
+            option.value = project.key; // Set the value to the full key (for deletion)
+            projectSelect.appendChild(option); // Add the option to the select dropdown
+        });
+    
+        // Show the dialog
+        deleteProjectDialog.showModal();
+    }
 
 function storeProject(newProject) {
         const sortedProjects = getProjects()
@@ -56,9 +80,6 @@ cancelBtn.addEventListener('click', () => {
     projectTitleForm.reset()
     dialogTitle.close()
 })
-projectTitleForm.addEventListener('submit', handleProjectTitleSubmit);
-
-addProjectBtn.addEventListener('click', () => dialogTitle.showModal())
 
 function getProjects() {
     // Step 1: Get all keys from localStorage
@@ -120,6 +141,10 @@ function loadProjectTasks() {
         })
     }
 )}
+
+projectTitleForm.addEventListener('submit', handleProjectTitleSubmit);
+addProjectBtn.addEventListener('click', () => dialogTitle.showModal())
+delProjectBtn.addEventListener('click', deleteProject)
 
 initProjectStorage()
 loadProjectTitles()
