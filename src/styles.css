@@ -73,6 +73,13 @@ button {
     /* background-color: var(--tertiary-color); */
 }
 
+#deleteProjectForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+}
+
 #projectTitleForm {
     width: 200px;
     display: flex;
