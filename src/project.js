@@ -33,9 +33,30 @@ function deleteProject(event) {
             const option = document.createElement('option'); // Use document.createElement
             option.textContent = project.key.substring(8); // Remove 'project-' prefix
             option.value = project.key; // Set the value to the full key (for deletion)
+            console.log(option)
             projectSelect.appendChild(option); // Add the option to the select dropdown
         });
-    
+
+        const deleteSubmitBtn = document.getElementById('confirmDeleteBtn')
+        deleteSubmitBtn.addEventListener('click', () => {
+            const selectedProjectKey = projectSelect.value; // Get the selected project's key
+
+            if (selectedProjectKey) {
+                // Remove the project from localStorage
+                localStorage.removeItem(selectedProjectKey);
+
+                // Remove the project button from the DOM
+                const projectClass = selectedProjectKey.substring(8).replace(/\s+/g, '-'); // Class from project name
+                const projectButton = document.querySelector(`.${projectClass}`); // Select the corresponding project button
+                if (projectButton) {
+                    projectButton.remove(); // Remove the button from DOM
+                }
+
+                // Optionally, close the dialog
+                deleteProjectDialog.close();
+            }
+        });
+
         // Show the dialog
         deleteProjectDialog.showModal();
     }
