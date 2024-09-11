@@ -66,7 +66,7 @@ function deleteTask(target) {
   const letterPart = taskId.match(/[a-zA-Z]+/)[0]; 
   const numberPart = taskSection.childElementCount
   const lastTaskId = `${letterPart}-${numberPart}`; 
-  localStorage.removeItem(`${lastTaskId}`)
+  localStorage.removeItem(lastTaskId)
 
   // reassign task-nums
   for (let i=1; i<taskSection.children.length; i++) {
@@ -79,3 +79,4 @@ function deleteTask(target) {
 
 // localStorage.clear()
 export {storeTask, saveTask, deleteTask}
+

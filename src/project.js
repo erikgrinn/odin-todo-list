@@ -19,9 +19,7 @@ function getCurrentProjectTitle() {
 }
 
 function deleteProject(event) {
-        const projects = getProjects();
-        console.log(projects)
-        
+        const projects = getProjects();        
         // Get the select dropdown
         const projectSelect = document.getElementById('projectSelect');
     
@@ -33,7 +31,6 @@ function deleteProject(event) {
             const option = document.createElement('option'); // Use document.createElement
             option.textContent = project.key.substring(8); // Remove 'project-' prefix
             option.value = project.key; // Set the value to the full key (for deletion)
-            console.log(option)
             projectSelect.appendChild(option); // Add the option to the select dropdown
         });
 
@@ -68,7 +65,29 @@ function storeProject(newProject) {
         const nextLetter = String.fromCharCode(lastLetter.charCodeAt(0) + 1)
         newProject.setAttribute('data-storage-letter', nextLetter)
         localStorage.setItem(`project-${newProject.textContent}`, newProject.getAttribute('data-storage-letter'))
-}
+
+        // console.log(sortedProjects)
+        // for (let i = 1; i < sortedProjects.length; i++) {
+        //     let prevLetter = sortedProjects[i - 1].value;
+        //     let currentLetter = sortedProjects[i].value;
+        //     console.log(prevLetter, currentLetter)
+        //     // Compare ASCII values of consecutive letters
+        //     let diff = currentLetter.charCodeAt(0) - prevLetter.charCodeAt(0);
+        //     console.log(diff)
+        //     if (diff > 1) {
+        //         const skippedLetter = String.fromCharCode(lastLetter.charCodeAt(0) + 1)
+        //         console.log(skippedLetter)
+        //         newProject.setAttribute('data-storage-letter', skippedLetter)
+        //         localStorage.setItem(`${sortedProjects[i].key}`, newProject.getAttribute('data-storage-letter'))
+        //     } 
+        //     // else {
+        //     //     // const letter = String.fromCharCode(lastLetter.charCodeAt(0) + 1)
+        //     //     newProject.setAttribute('data-storage-letter', currentLetter)
+        //     //     localStorage.setItem(`project-${newProject.textContent}`, newProject.getAttribute('data-storage-letter'))
+        //     // }
+        // }
+    }
+
 
 function handleProjectTitleSubmit(event) {
     event.preventDefault();
@@ -141,9 +160,7 @@ function loadProjectTitles() {
 
 function loadProjectTasks() {
     const projectList = getProjects()
-    console.log(projectList)
     projectList.forEach(project => {
-        console.log(projectList, project)
         const projectName = project.key.substring(8)
         const projectBtn = document.querySelector(`button.${projectName}`)
 
