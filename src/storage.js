@@ -52,8 +52,8 @@ function saveTask(target) {
 }
 
 function deleteTask(target) {
+  const currentProject = document.getElementById('currentProject')
   const taskSection = currentProject.children[1]
-  const currentProjectTitle = document.querySelector('#currentProjectTitle > b').textContent
 
   // remove target task card
   const taskCard = target.closest('.taskCard')
