@@ -1,30 +1,33 @@
-@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap");
 
 :root {
-    --primary-color: #d58337;
-    --secondary-color: #025678;
-    --tertiary-color: #aeaeae;
-    --quaternary-color: #535353;
+  --primary-color: #d58337;
+  --secondary-color: #025678;
+  --tertiary-color: #aeaeae;
+  --quaternary-color: #535353;
 }
 
 body {
-    margin: 0;
-    font-family: "Raleway", sans-serif;
-    min-height: 100vh;
-    height:100%;
-    display: grid;
-    grid-template-columns: 2fr 13fr;
-    gap: 12px;
-    background-image: linear-gradient(var(--tertiary-color), var(--primary-color));
-    font-size: 20px;
+  margin: 0;
+  font-family: "Raleway", sans-serif;
+  min-height: 100vh;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 2fr 13fr;
+  gap: 12px;
+  background-image: linear-gradient(
+    var(--tertiary-color),
+    var(--primary-color)
+  );
+  font-size: 20px;
 }
 
 button {
-    border-color: var(--primary-color);
-    border-radius: 6px;
-    outline: none;
-    background-color: var(--primary-color);
-    border-color: var(--tertiary-color);
+  border-color: var(--primary-color);
+  border-radius: 6px;
+  outline: none;
+  background-color: var(--primary-color);
+  border-color: var(--tertiary-color);
 }
 
 /* #deleteBtn {
@@ -34,32 +37,31 @@ button {
 } */
 
 #sidebar {
-    background-color: var(--quaternary-color);
-    padding: 0 4px;
-    color: white;
+  background-color: var(--quaternary-color);
+  padding: 0 4px;
+  color: white;
 }
 
 #myProjectsHeader {
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
-    margin-bottom: 4px;
-    gap: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  margin-bottom: 4px;
+  gap: 6px;
 }
 
 #projectTitles {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
 }
 
 #projectTitles button {
-    font-family: inherit;
-    font-size: 20px;
-    height: 30px;
-    width: auto;
-    border-radius: 24px;
-
+  font-family: inherit;
+  font-size: 20px;
+  height: 30px;
+  width: auto;
+  border-radius: 24px;
 }
 
 /* #addProject,
@@ -69,137 +71,134 @@ button {
 
 #dialogTitle,
 #dialogContent {
-    border-radius: 24px;
-    /* background-color: var(--tertiary-color); */
+  border-radius: 24px;
+  /* background-color: var(--tertiary-color); */
 }
 
 #deleteProjectForm {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
 }
 
 #projectTitleForm {
-    width: 200px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 12px;
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
 }
 
 #newTitle {
-    height: 25px;
-    width: 150px;
-    outline: none;
+  height: 25px;
+  width: 150px;
+  outline: none;
 }
 
 #currentProjectTitle {
-    display: flex;
-    align-items: center;
-    margin-bottom: 8px;
-    gap: 6px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+  gap: 6px;
 }
 
 .taskSection {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 8px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
 }
 
 .taskCard {
-    padding: 12px;
-    display: flex;
-    flex-direction: column;
-    width: 92%;
-    background-color: white;
-    border-left: 8px solid var(--secondary-color);
-    border-radius: 8px;
-    box-shadow: 12px 12px 12px rgb(0, 0, 0, 0.25);
-    transition: .2s;
-    margin-bottom: 6px;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  width: 92%;
+  background-color: white;
+  border-left: 8px solid var(--secondary-color);
+  border-radius: 8px;
+  box-shadow: 12px 12px 12px rgb(0, 0, 0, 0.25);
+  transition: 0.2s;
+  margin-bottom: 6px;
 }
 
 #taskCardForm input {
-    border: none;
+  border: none;
 }
 
 .taskCard:hover {
-    border-left-width: 12px;
+  border-left-width: 12px;
 }
 
 #taskTitle {
-    margin-bottom: 4px;
-    background-color: none;
+  margin-bottom: 4px;
+  background-color: none;
 }
 
 #taskDescription {
-    font-weight: lighter;
-    font-size: 20px;
+  font-weight: lighter;
+  font-size: 20px;
 }
 
 #taskDate {
-    font-weight: lighter;
-    font-size: 16px;
-    width: 30%;
+  font-weight: lighter;
+  font-size: 16px;
+  width: 30%;
 }
 
 #taskPriority label {
-    background-color: inherit;
-    font-weight: lighter;
-    font-size: 16px;
+  background-color: inherit;
+  font-weight: lighter;
+  font-size: 16px;
 }
 
 #taskPriority {
-    border-radius: 16px;
+  border-radius: 16px;
 }
 
 .taskCard input,
 .taskCard textarea {
-
-    background: transparent;
-    font: inherit;
-    width: 100%;
-    outline: none;
-    border: none;
-    resize: none;
+  background: transparent;
+  font: inherit;
+  width: 100%;
+  outline: none;
+  border: none;
+  resize: none;
 }
 
 .taskCard .bottomCard {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .taskCard .dateandpriority {
-    display: flex;
-    gap: 24px;
-    font-weight: lighter;
-    font-size: 16px;
-    
+  display: flex;
+  gap: 24px;
+  font-weight: lighter;
+  font-size: 16px;
 }
 
 .taskCard .icons {
-    display: flex;
-    gap: 4px;
+  display: flex;
+  gap: 4px;
 }
 
 .taskCard .icons img {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .taskCard .icons button {
-    display: flex;
-    background: none;
-	color: inherit;
-	border: none;
-	padding: 0;
-	font: inherit;
-	cursor: pointer;
-	outline: inherit;
+  display: flex;
+  background: none;
+  color: inherit;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
 }
 
 #saveBtn {
-    display: none;
+  display: none;
 }

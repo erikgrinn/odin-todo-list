@@ -1,83 +1,106 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-<head>
-    <meta charset='utf-8'>
-    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>Todo List</title>
-    <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <link rel='stylesheet' type='text/css' media='screen' href='styles.css'>
-    <script defer src='index.js'></script>
-</head>
-<body>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" type="text/css" media="screen" href="styles.css" />
+    <script defer src="index.js"></script>
+  </head>
+  <body>
     <div id="sidebar">
-        <div id="mainList">
-            <div>Add task</div>
-            <div>Search</div>
-            <div>Today</div>
-            <div>Upcoming</div>
-            <div>Filters & Labels</div>
-            <br>
+      <div id="mainList">
+        <div>Add task</div>
+        <div>Search</div>
+        <div>Today</div>
+        <div>Upcoming</div>
+        <div>Filters & Labels</div>
+        <br />
+      </div>
+      <div id="myProjects">
+        <div id="myProjectsHeader">
+          <b>My Projects</b>
+          <button id="deleteProject">-</button>
+          <dialog id="deleteProjectDialog">
+            <form id="deleteProjectForm" method="dialog">
+              <h3>Select a project to delete:</h3>
+              <select id="projectSelect"></select>
+              <div>
+                <button
+                  type="submit"
+                  id="confirmDeleteBtn"
+                  form="deleteProjectForm"
+                >
+                  Delete
+                </button>
+                <button id="cancelDeleteBtn">Cancel</button>
+              </div>
+            </form>
+          </dialog>
+          <button id="addProject">+</button>
         </div>
-        <div id="myProjects">
-            <div id="myProjectsHeader">
-                <b>My Projects</b>
-                <button id="deleteProject">-</button>
-                <dialog id="deleteProjectDialog">
-                    <form id="deleteProjectForm" method="dialog">
-                        <h3>Select a project to delete:</h3>
-                        <select id="projectSelect"></select>
-                        <div>
-                            <button type="submit" id="confirmDeleteBtn" form="deleteProjectForm">Delete</button>
-                            <button id="cancelDeleteBtn">Cancel</button>
-                        </div>
-                    </form>
-                </dialog>
-                <button id="addProject">+</button>
-            </div>
-            <div id="projectTitles">
-                <dialog id="dialogTitle">
-                    <form id="projectTitleForm" formmethod="dialog">
-                        <input type="text" id="newTitle" placeholder="Title" required>
-                        <button type="submit" id="submitTitle" form="projectTitleForm">Add Project</button>
-                        <button type="button" id="cancelTitle">Cancel</button>
-                    </form>
-                </dialog>
-                <button class="Home">Home</button>
-            </div>
+        <div id="projectTitles">
+          <dialog id="dialogTitle">
+            <form id="projectTitleForm" formmethod="dialog">
+              <input type="text" id="newTitle" placeholder="Title" required />
+              <button type="submit" id="submitTitle" form="projectTitleForm">
+                Add Project
+              </button>
+              <button type="button" id="cancelTitle">Cancel</button>
+            </form>
+          </dialog>
+          <button class="Home">Home</button>
         </div>
+      </div>
     </div>
     <div id="main">
-        <div id="currentProject" data-storage-letter="A">
-            <div id="currentProjectTitle">
-                <b>Home</b>
-                <button id="addTask">+</button>
-            </div>
-            <div class="taskSection">
-                <div class="taskCard" data-task-num="0" style="display: none">
-                    <form id="taskCardForm">
-                        <input type="text" id="taskTitle" placeholder="Title">
-                        <textarea rows="2" id="taskDescription" placeholder="Description"></textarea>
-                        <div class="bottomCard">
-                            <div class="dateandpriority">
-                                <input type="date" id="taskDate" placeholder="No Date">
-                                <label>
-                                    Priority:
-                                    <select id="taskPriority" name="priority">
-                                        <option value="">None</option>
-                                        <option value="1">I'll do it tomorrow...</option>
-                                        <option value="2">Now</option>
-                                        <option value="3">Should've been done yesterday</option>
-                                    </select>
-                                </label>  
-                            </div>
-                            <div class="icons">
-                                <button type="button" id="deleteBtn" onclick="deleteTask(this)"><img src="./images/delete-outline.svg" alt="deleteIcon" height="25px" width="25px"></button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
+      <div id="currentProject" data-storage-letter="A">
+        <div id="currentProjectTitle">
+          <b>Home</b>
+          <button id="addTask">+</button>
         </div>
+        <div class="taskSection">
+          <div class="taskCard" data-task-num="0" style="display: none">
+            <form id="taskCardForm">
+              <input type="text" id="taskTitle" placeholder="Title" />
+              <textarea
+                rows="2"
+                id="taskDescription"
+                placeholder="Description"
+              ></textarea>
+              <div class="bottomCard">
+                <div class="dateandpriority">
+                  <input type="date" id="taskDate" placeholder="No Date" />
+                  <label>
+                    Priority:
+                    <select id="taskPriority" name="priority">
+                      <option value="">None</option>
+                      <option value="1">I'll do it tomorrow...</option>
+                      <option value="2">Now</option>
+                      <option value="3">Should've been done yesterday</option>
+                    </select>
+                  </label>
+                </div>
+                <div class="icons">
+                  <button
+                    type="button"
+                    id="deleteBtn"
+                    onclick="deleteTask(this)"
+                  >
+                    <img
+                      src="./images/delete-outline.svg"
+                      alt="deleteIcon"
+                      height="25px"
+                      width="25px"
+                    />
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
     </div>
-</body>
+  </body>
 </html>
