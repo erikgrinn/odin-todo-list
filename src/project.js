@@ -20,8 +20,8 @@ function getCurrentProjectTitle() {
 
 function deleteProject(event) {
   const currentProjectTitle = document.querySelector("#currentProjectTitle > b").textContent;
-  if (currentProjectTitle === "Home") {
-    alert("The Home project cannot be deleted.");
+  if (currentProjectTitle === "Main") {
+    alert("The Main project cannot be deleted.");
     return;
   }
 
@@ -34,6 +34,9 @@ function deleteProject(event) {
 
   // Loop through each project and create an <option> element
   projects.forEach((project) => {
+    const projTitle = project.key.substring(8); // Remove 'project-' prefix
+    if (projTitle === "Main") return; // Skip if project is 'Main'
+
     const option = document.createElement("option"); // Use document.createElement
     option.textContent = project.key.substring(8); // Remove 'project-' prefix
     option.value = project.key; // Set the value to the full key (for deletion)
@@ -146,7 +149,9 @@ function getProjects() {
 }
 
 function loadProjectTitles() {
-  const projectList = getProjects().slice(1); // Retrieve sorted projects from localStorage (except home)
+  projectTitles.innerHTML = ""; // Clear previous buttons, had to move dialog outside in html (probably better anyway)
+
+  const projectList = getProjects(); // Retrieve sorted projects from localStorage
 
   projectList.forEach((project) => {
     const projTitle = project.key.replace("project-", ""); // Remove 'project-' prefix from keys
@@ -168,6 +173,8 @@ function loadProjectTasks() {
   projectList.forEach((project) => {
     const projectName = project.key.substring(8);
     const projectBtn = document.querySelector(`button.${projectName}`);
+
+    if (!projectBtn) return; // Prevent error if button not found
 
     projectBtn.addEventListener("click", () => {
       const currentProjectTitleElement = document.querySelector("#currentProjectTitle > b");
