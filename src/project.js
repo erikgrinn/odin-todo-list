@@ -10,13 +10,8 @@ const projectTitleForm = document.getElementById("projectTitleForm");
 const currentProject = document.getElementById("currentProject");
 
 function initProjectStorage() {
-  const currentProjectTitle = document.querySelector(
-    "#currentProjectTitle > b",
-  ).textContent;
-  localStorage.setItem(
-    `project-${currentProjectTitle}`,
-    currentProject.getAttribute("data-storage-letter"),
-  );
+  const currentProjectTitle = document.querySelector("#currentProjectTitle > b").textContent;
+  localStorage.setItem(`project-${currentProjectTitle}`, currentProject.getAttribute("data-storage-letter"));
 }
 
 function getCurrentProjectTitle() {
@@ -24,6 +19,12 @@ function getCurrentProjectTitle() {
 }
 
 function deleteProject(event) {
+  const currentProjectTitle = document.querySelector("#currentProjectTitle > b").textContent;
+  if (currentProjectTitle === "Home") {
+    alert("The Home project cannot be deleted.");
+    return;
+  }
+
   const projects = getProjects();
   // Get the select dropdown
   const projectSelect = document.getElementById("projectSelect");
@@ -69,10 +70,7 @@ function storeProject(newProject) {
   const lastLetter = lastStoredValue.charAt(0);
   const nextLetter = String.fromCharCode(lastLetter.charCodeAt(0) + 1);
   newProject.setAttribute("data-storage-letter", nextLetter);
-  localStorage.setItem(
-    `project-${newProject.textContent}`,
-    newProject.getAttribute("data-storage-letter"),
-  );
+  localStorage.setItem(`project-${newProject.textContent}`, newProject.getAttribute("data-storage-letter"));
 
   // console.log(sortedProjects)
   // for (let i = 1; i < sortedProjects.length; i++) {
@@ -109,10 +107,7 @@ function handleProjectTitleSubmit(event) {
     storeProject(newProj);
 
     currentProject.children[0].querySelector("b").textContent = projTitle;
-    currentProject.setAttribute(
-      "data-storage-letter",
-      newProj.getAttribute("data-storage-letter"),
-    );
+    currentProject.setAttribute("data-storage-letter", newProj.getAttribute("data-storage-letter"));
 
     // remove all tasks except first hidden empty taskCard
     if (currentProject.children[1].children[1]) {
@@ -175,16 +170,10 @@ function loadProjectTasks() {
     const projectBtn = document.querySelector(`button.${projectName}`);
 
     projectBtn.addEventListener("click", () => {
-      const currentProjectTitleElement = document.querySelector(
-        "#currentProjectTitle > b",
-      );
+      const currentProjectTitleElement = document.querySelector("#currentProjectTitle > b");
       const currentProjectTitle = currentProjectTitleElement.textContent;
       if (currentProjectTitle !== projectName) {
-        for (
-          let i = currentProject.children[1].children.length - 1;
-          i > 0;
-          i--
-        ) {
+        for (let i = currentProject.children[1].children.length - 1; i > 0; i--) {
           currentProject.children[1].children[i].remove();
         }
         currentProjectTitleElement.textContent = projectName;
